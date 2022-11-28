@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+    <title>Корзина</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="header__nav">
+                <div class="header__nav-menu header__nav-menu_left">
+                    <a href="#" class="header__nav-burger">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10 14C10 12.8954 10.8954 12 12 12H36C37.1046 12 38 12.8954 38 14C38 15.1046 37.1046 16 36 16H12C10.8954 16 10 15.1046 10 14Z"
+                                fill="white" />
+                            <path
+                                d="M10 24C10 22.8954 10.8954 22 12 22H36C37.1046 22 38 22.8954 38 24C38 25.1046 37.1046 26 36 26H12C10.8954 26 10 25.1046 10 24Z"
+                                fill="white" />
+                            <path
+                                d="M10 34C10 32.8954 10.8954 32 12 32H36C37.1046 32 38 32.8954 38 34C38 35.1046 37.1046 36 36 36H12C10.8954 36 10 35.1046 10 34Z"
+                                fill="white" />
+                            <rect x="0.5" y="0.5" width="47" height="47" rx="7.5" stroke="white"
+                                stroke-opacity="0.45" />
+                        </svg>
+                    </a>
+                    <a href="#" class="header__nav-main-link">ТОВАРЫ И ТОЧКА</a>
+                </div>
+                <fieldset class="header__nav-search-fieldset">
+                    <input type="text" class="header__nav-search-input" placeholder="Я ищу...">
+                    <span class="header__nav-search-span">
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M8.93382 1.70286C5.44752 1.70286 2.62132 4.52907 2.62132 8.01536C2.62132 11.5017 5.44752 14.3279 8.93382 14.3279C12.4201 14.3279 15.2463 11.5017 15.2463 8.01536C15.2463 4.52907 12.4201 1.70286 8.93382 1.70286ZM0.937988 8.01536C0.937988 3.59939 4.51784 0.0195312 8.93382 0.0195312C13.3498 0.0195313 16.9296 3.59939 16.9296 8.01536C16.9296 12.4313 13.3498 16.0112 8.93382 16.0112C4.51784 16.0112 0.937988 12.4313 0.937988 8.01536Z"
+                                fill="white" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.9602 12.8988C13.2846 12.5659 13.8175 12.559 14.1504 12.8834L20.1959 18.7751C20.5288 19.0995 20.5357 19.6324 20.2112 19.9653C19.8868 20.2982 19.3539 20.3051 19.021 19.9806L12.9756 14.089C12.6427 13.7645 12.6358 13.2317 12.9602 12.8988Z"
+                                fill="white" />
+                        </svg>
+                    </span>
+                </fieldset>
+                <div class="header__nav-menu header__nav-menu_right">
+                    <a href="#" class="header__nav-link header__nav-link_column">
+                        <svg class="header__nav-link-icon header__nav-link-icon_profile" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5207 5.28873C14.5207 8.05869 12.4361 10.2066 10.006 10.2066C7.57586 10.2066 5.49117 8.05869 5.49117 5.31221C5.47931 2.60094 7.58777 0.5 10.006 0.5C12.4241 0.5 14.5207 2.55399 14.5207 5.28873ZM0.5 18.9977C0.5 19.9836 1.14326 20.5 2.94201 20.5H17.058C18.8567 20.5 19.5 19.9836 19.5 18.9977C19.5 16.1338 15.8429 12.1901 10.006 12.1901C4.15705 12.1901 0.5 16.1338 0.5 18.9977Z" fill="white"/>
+                            </svg>
+                        <p class="header__nav-link-text">Профиль</p>
+                    </a>
+                    <a href="#" class="header__nav-link header__nav-link_column">
+                        <svg class="header__nav-link-icon header__nav-link-icon_cart" width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2214 17.4665C11.3829 17.9206 11.8452 18.1949 12.3212 18.119L25.0874 16.0828C25.5004 16.017 25.8288 15.701 25.9106 15.2909L27.2654 8.49865C27.3875 7.88644 26.925 7.31324 26.3008 7.30317L8.94122 7.02324C8.24354 7.01199 7.74913 7.70067 7.98289 8.35812L11.2214 17.4665Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.8262 25.3593C13.1109 25.3593 14.1523 24.3178 14.1523 23.0331C14.1523 21.7484 13.1109 20.707 11.8262 20.707C10.5415 20.707 9.5 21.7484 9.5 23.0331C9.5 24.3178 10.5415 25.3593 11.8262 25.3593Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M23.457 25.3593C24.7417 25.3593 25.7831 24.3178 25.7831 23.0331C25.7831 21.7484 24.7417 20.707 23.457 20.707C22.1723 20.707 21.1308 21.7484 21.1308 23.0331C21.1308 24.3178 22.1723 25.3593 23.457 25.3593Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4C6.933 4 8.5 3.77614 8.5 3.5C8.5 3.22386 6.933 3 5 3C3.067 3 1.5 3.22386 1.5 3.5C1.5 3.77614 3.067 4 5 4Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.45442 2.65147C3.1177 2.55672 4.01745 2.5 5 2.5C5.98255 2.5 6.8823 2.55672 7.54558 2.65147C7.87345 2.69831 8.16489 2.75734 8.38495 2.83167C8.4917 2.86772 8.61185 2.91717 8.71511 2.98926C8.80017 3.04864 9 3.21275 9 3.5C9 3.78725 8.80017 3.95136 8.71511 4.01074C8.61185 4.08283 8.4917 4.13228 8.38495 4.16833C8.16489 4.24266 7.87345 4.30169 7.54558 4.34853C6.8823 4.44328 5.98255 4.5 5 4.5C4.01745 4.5 3.1177 4.44328 2.45442 4.34853C2.12655 4.30169 1.83511 4.24266 1.61505 4.16833C1.5083 4.13228 1.38815 4.08283 1.28489 4.01074C1.19983 3.95136 1 3.78725 1 3.5C1 3.21275 1.19983 3.04864 1.28489 2.98926C1.38815 2.91717 1.5083 2.86772 1.61505 2.83167C1.83511 2.75734 2.12655 2.69831 2.45442 2.65147Z" fill="white"/>
+                            </svg>
+                            
+                        <p class="header__nav-link-text">Корзина</p>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container"></div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <p class="footer__copyright">
+                    © 2022  ООО «Товары и точка»
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
