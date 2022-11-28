@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+        const inp = document.querySelector('.input');
+
+        // написать функцию расстановки цифр по местам в маске теелфонного номера
+        // добавить ограничение длины
+
+        function filterInput(text) {
+            let val = text
+                        .split('')
+                        .filter(char => char.charCodeAt(0) > 47 && 
+                                char.charCodeAt(0) < 58)
+                        .join('');
+            return val;
+        }
+
+        inp.addEventListener('input', e => {
+        inp.value = filterInput(inp.value);
+        });
+    </script>
+</head>
+<body>
+    <input type="text" class="input">
+</body>
+</html>
