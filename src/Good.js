@@ -69,6 +69,7 @@ export class Good {
         this.description.append(this.nameElement);
 
         if (this.additionalProps) {
+            this.additionalInfoElement = dce('p', 'goods-card__additional-info');
             this.additionalInfoElement.textContent = joinAdditionalProps(this.additionalProps);
             this.description.append(this.additionalInfoElement);
             console.log(this.additionalInfoElement.textContent);
