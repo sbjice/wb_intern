@@ -1,0 +1,192 @@
+.good-card {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    width: 100%;
+    min-height: 100px;
+    padding-top: 12px;
+    outline: 1px solid teal;
+    background-color: var(--light-gray);
+}
+
+.good-card__image {
+    display: inline-block;
+    width: 72px;
+    height: 96px;
+    margin-right: 16px;
+}
+
+.goods-card__description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    max-width: 275px;
+}
+
+.goods-card__name {
+    width: 100%;
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black);
+}
+
+.goods-card__additional-info {
+    width: 100%;
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--black);
+}
+
+.goods-card__stock{
+    width: 100%;
+    margin-bottom: 4px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--text-gray);
+}
+
+.goods-card__provider {
+    width: 100%;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--text-gray);
+}
+
+.goods-card__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 16px;
+}
+
+.goods-card__actions-with-amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.goods-card__actions-plus, .goods-card__actions-minus {
+    /* text-align: center; */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    width: 28.5px;
+    background-color: var(--white);
+}
+
+.goods-card__actions-plus {
+    border-radius: 0 8px 8px 0;
+}
+
+.goods-card__actions-minus {
+    border-radius: 8px 0 0 8px;
+}
+
+.goods-card__actions-amount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    width: 44px;
+    background-color: var(--white);
+}
+
+.goods-card__warning {
+    margin-bottom: 8px;
+    width: 100%;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--coral);
+}
+
+.goods-card__warning_hidden {
+    display: none;
+}
+
+.goods-card__actions-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.goods-card__fav-icon, .goods-card__delete-icon {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.goods-card__fav-icon {
+    margin-right: 16px;
+}
+
+
+.goods-card__actions-fav_checked .goods-card__fav-icon g path { 
+    fill: var(--red);
+}
+
+.goods-card__actions-delete:active .goods-card__delete-icon g path { 
+    fill: var(--red);
+}
+
+
+.goods-card__prices {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 120px;
+    width: 100%;
+}
+
+.goods-card__prices-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.goods-card__prices-current {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--black);
+}
+
+.goods-card__prices-currency {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black);
+}
+
+.goods-card__prices-previous {
+    position: relative;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-decoration: underline dashed;
+    color: var(--text-gray);
+}
+
+.goods-card__prices-previous::after {
+    content: '';
+    position: absolute;
+    top: 60%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 0;
+    border: 0.5px solid var(--text-gray);
+}
+

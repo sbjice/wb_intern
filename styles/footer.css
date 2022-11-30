@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 88px;
+    min-height: 88px;
     width: 100%;
     background-color: var(--violet);
 
