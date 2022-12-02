@@ -1,0 +1,68 @@
+.accordeon {
+    margin-left: 20px;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+}
+
+.accordeon-bar {
+    width: 100%;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.accordeon-totals {
+    display: inline-flex;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black);
+}
+
+.accordeon-totals_hidden {
+    display: none;
+}
+
+
+.accordeon-body {
+    height: 100%;
+    width: 100%;
+    max-height: 0;
+    display: flex;
+    flex-direction: column;
+    transition: all .5s ease-in-out;
+}
+
+
+/* transforn creates new stacking context, what to do with it? */
+.accordeon-body * {
+    transition: all .5s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    /* transform: scaleY(0);   */
+}
+
+.accordeon-body_open * {
+    max-height: 100vh;
+    opacity: 1;
+    /* transform: scaleY(1); */
+}
+
+
+.accordeon-body_open {
+    max-height: 100vh;
+}
+
+
+.accordeon-arrow {
+    transition: all .3s ease-in-out;
+}
+
+.accordeon-link_open .accordeon-arrow {
+    transform: rotate(180deg) ;
+}

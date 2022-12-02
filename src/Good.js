@@ -1,6 +1,6 @@
 export const dce = (el, cl) => {
     const elem = document.createElement(el);
-    if (cl !== undefined) elem.classList.add(cl); 
+    if (cl !== undefined) elem.classList.add(cl);
     return elem;
 };
 export const qs = (sel) => {
@@ -12,17 +12,18 @@ const joinAdditionalProps = (props) => {
     return arr.join('   ');
 }
 
-const CURRENCY = 'сом'
+const CURRENCY = 'сом';
 const USER_DISCOUNT = 0.1;
 
 export class Good {
     constructor(basicPrice, currentPrice,
         availableAmount, orderedAmount,
+        ordered,
         deliveryFirstDate, deliveryLastDate,
         secondAvailableAmount,
         secondDeliveryFirstDate, secondDeliveryLastDate,
         goodID, name, provider, stock,
-        deleteCallback, recountCallback,
+        deleteCallback, recountCallback, orderCallback,
         imageSrc, checked,
         additionalProps) {
 
@@ -30,6 +31,7 @@ export class Good {
         this.currentPrice = currentPrice;
         this.availableAmount = availableAmount;
         this.orderedAmount = orderedAmount;
+        this.ordered = ordered;
         this.deliveryFirstDate = deliveryFirstDate;
         this.deliveryLastDate = deliveryLastDate;
         this.secondAvailableAmount = secondAvailableAmount;
@@ -43,6 +45,7 @@ export class Good {
 
         this.deleteCallback = deleteCallback;
         this.recountCallback = recountCallback;
+        this.orderCallback = orderCallback;
 
         this.imageSrc = imageSrc;
         this.checked = checked;
@@ -55,6 +58,18 @@ export class Good {
     leftAmount = () => {
         return (this.secondAvailableAmount + this.availableAmount) - this.orderedAmount;
     }
+
+    setCallback = (cb) => {
+        this.orderCallback = cb;
+    }
+
+    setOrdered = (val) => {
+        this.ordered = val;
+        console.log(`${this.name} ${this.ordered ? 'is' : 'is not'} ordered`);
+    }
+
+
+
 
     createVisuals = () => {
         this.card = dce('div', 'good-card');
@@ -72,13 +87,40 @@ export class Good {
             this.additionalInfoElement = dce('p', 'goods-card__additional-info');
             this.additionalInfoElement.textContent = joinAdditionalProps(this.additionalProps);
             this.description.append(this.additionalInfoElement);
-            console.log(this.additionalInfoElement.textContent);
         }
         this.stockElement = dce('p', 'goods-card__stock');
         this.stockElement.textContent = this.stock;
+        this.descriptionBottom = dce('div', 'goods-card__description-bottom');
         this.providerElement = dce('p', 'goods-card__provider');
-        this.providerElement.textContent = this.provider;
-        this.description.append(this.stockElement, this.providerElement);
+        this.providerElement.textContent = this.provider.name;
+
+        this.descriptionSpan = dce('span', 'goods-card__description-span');
+
+        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.classList.add('goods-card__description-icon');
+        svg.setAttribute('width', '20');
+        svg.setAttribute('height', '20');
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('viewBox', '0 0 20 20');
+        svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+        svg.innerHTML = `<g>
+        <circle cx="10" cy="10" r="7.5" stroke="#9797AF"/>
+        <path d="M9.88867 7.58691C9.62826 7.58691 9.41504 7.51042 9.24902 7.35742C9.08301 7.20117 9 7.01074 9 6.78613C9 6.55501 9.08301 6.36621 9.24902 6.21973C9.41504 6.07324 9.62826 6 9.88867 6C10.1523 6 10.3656 6.07324 10.5283 6.21973C10.6943 6.36621 10.7773 6.55501 10.7773 6.78613C10.7773 7.02051 10.6943 7.21257 10.5283 7.3623C10.3656 7.51204 10.1523 7.58691 9.88867 7.58691ZM10.6504 13.3779H9.10742V8.37793H10.6504V13.3779Z" fill="#9797AF"/>
+        </g>`;
+        this.descriptionSpan.append(svg);
+        this.descriptionContainer = dce('div', 'goods-card__description-container');
+        this.descriptionContainerName = dce('p', 'goods-card__description-container-name');
+        this.descriptionContainerName.textContent = this.provider.name;
+        this.descriptionContainerOGRN = dce('p', 'goods-card__description-container-ogrn');
+        this.descriptionContainerOGRN.textContent = 'ОГРН: ' + this.provider.ogrn;
+        this.descriptionContainerAddress = dce('p', 'goods-card__description-container-address');
+        this.descriptionContainerAddress.textContent = this.provider.address;
+        this.descriptionContainer.append(this.descriptionContainerName, this.descriptionContainerOGRN, this.descriptionContainerAddress);
+
+        this.descriptionSpan.append(this.descriptionContainer);
+        this.descriptionBottom.append(this.providerElement, this.descriptionSpan);
+
+        this.description.append(this.stockElement, this.descriptionBottom);
         this.card.append(this.description);
 
         this.actions = dce('div', 'goods-card__actions');
@@ -112,7 +154,7 @@ export class Good {
 
         this.actionFav = dce('a', 'goods-card__actions-fav');
 
-        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('goods-card__fav-icon');
         svg.setAttribute('width', '20');
         svg.setAttribute('height', '20');
@@ -161,16 +203,38 @@ export class Good {
         this.pricesTop = dce('div', 'goods-card__prices-top');
 
         this.pricesCurrent = dce('p', 'goods-card__prices-current');
-        this.pricesCurrent.textContent = Math.round(this.currentPrice * this.orderedAmount * (1 - USER_DISCOUNT));
+        this.pricesCurrent.textContent = Math.round(this.currentPrice * this.orderedAmount); //* (1 - USER_DISCOUNT)
 
         this.pricesCurrency = dce('p', 'goods-card__prices-currency');
         this.pricesCurrency.textContent = CURRENCY;
         this.pricesTop.append(this.pricesCurrent, this.pricesCurrency);
 
+        this.pricesData = dce('div', 'goods-card__prices-data');
+
         this.pricesPrevious = dce('p', 'goods-card__prices-previous');
         this.pricesPrevious.textContent = Math.round(this.basicPrice * this.orderedAmount) + ' ' + CURRENCY;
 
-        this.prices.append(this.pricesTop, this.pricesPrevious);
+        this.pricesData.append(this.pricesPrevious);
+
+        this.pricesDiscounts = dce('div', 'goods-card__prices-discounts');
+        this.pricesDiscountsBasicDiscount = dce('div', 'goods-card__prices-basic-discount');
+        this.pricesDiscountsBasicDiscountPercent = dce('p', 'goods-card__prices-basic-discount-percent');
+        this.pricesDiscountsBasicDiscountPercent.textContent = `Скидка ${Math.round((1 - (this.currentPrice / this.basicPrice)) * 100)}%`;
+        this.pricesDiscountsBasicDiscountValue = dce('p', 'goods-card__prices-basic-discount-value');
+        this.pricesDiscountsBasicDiscountValue.textContent = `-${this.basicPrice - this.currentPrice} ${CURRENCY}`;
+        this.pricesDiscountsBasicDiscount.append(this.pricesDiscountsBasicDiscountPercent, this.pricesDiscountsBasicDiscountValue);
+
+        this.pricesDiscountsUserDiscount = dce('div', 'goods-card__prices-user-discount');
+        this.pricesDiscountsUserDiscountPercent = dce('p', 'goods-card__prices-user-discount-percent');
+        this.pricesDiscountsUserDiscountPercent.textContent = `Скидка покупателя ${Math.round(100 * USER_DISCOUNT)}%`;
+        this.pricesDiscountsUserDiscountValue = dce('p', 'goods-card__prices-user-discount-value');
+        this.pricesDiscountsUserDiscountValue.textContent = `-${Math.round(this.basicPrice * USER_DISCOUNT)} ${CURRENCY}`;
+        this.pricesDiscountsUserDiscount.append(this.pricesDiscountsUserDiscountPercent, this.pricesDiscountsUserDiscountValue);
+        this.pricesDiscounts.append(this.pricesDiscountsBasicDiscount, this.pricesDiscountsUserDiscount);
+        this.pricesData.append(this.pricesDiscounts);
+
+
+        this.prices.append(this.pricesTop, this.pricesData);
 
         this.card.append(this.prices);
 

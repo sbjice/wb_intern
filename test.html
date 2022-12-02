@@ -11,17 +11,31 @@
     <script type="module">
         // const inp = document.querySelector('.input');
 
-        // // написать функцию расстановки цифр по местам в маске теелфонного номера
-        // // добавить ограничение длины
-
-        // function filterInput(text) {
-        //     let val = text
+        // // написал функцию расстановки цифр по местам в маске телефонного номера
+        // function filterPhoneInput(text) {
+        //     let raw = text
         //                 .split('')
-        //                 .filter(char => char.charCodeAt(0) > 47 && 
-        //                         char.charCodeAt(0) < 58)
-        //                 .join('');
+        //                 .filter(char => char.charCodeAt(0) > 41 && 
+        //                         char.charCodeAt(0) < 58 && char !== ' ')
+        //                 .join('')
+        //                 .substr(0, 30);
+        //     // raw = raw.replace(' ', '');
+        //     console.log(raw);
+        //     let val = '';
+        //     if(raw[0] === '+') raw = raw.substr(1);
+            
+        //     for (let i = 0; i < raw.length; i += 1) {
+        //         if (i > 10) break;
+        //         if (i === 0) {
+        //         val += '+7 ';
+        //         if(raw[i] === '7' || raw[i] === '8') continue;
+        //         } else if (i === 1 || i === 4 || i === 7 || i === 9) {
+        //         val += ' ' + raw[i];
+        //         } else val += raw[i];
+        //     }
         //     return val;
         // }
+
 
         // inp.addEventListener('input', e => {
         // inp.value = filterInput(inp.value);

@@ -1,12 +1,129 @@
-.good-card {
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+.goods-label {
+    display: none;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.goods-label .goods-checkbox{
+    margin: 0;
+    margin-right: 11px;
+}
+
+.goods-label_visible {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    /* justify-content: space-between; */
+}
+
+.goods-span{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black);   
+}
+
+.goods-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    /* align-items: flex-start; */
+}
+
+.goods-li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    max-width: 640px;
+}
+
+.goods-li:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+
+.goods-checkbox {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    position: relative;
+    margin-top: 49px;
+    margin-right: 12px;
+    width: 22px;
+    height: 22px;
+    visibility: hidden;
+}
+
+.goods-checkbox::after {
+    position: absolute;
+    content: '';
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.goods-checkbox:checked::after {
+    position: absolute;
+    content: '';
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    border-radius: 5px;
+    border: 1px solid var(--magenta);
+    background: var(--magenta) no-repeat center center / 12px 10px;
+    background-image: url('../assets/img/checkbox-icon.svg');
+}
+
+.good-card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    max-width: 606px;
     width: 100%;
     min-height: 100px;
     padding-top: 12px;
-    outline: 1px solid teal;
-    background-color: var(--light-gray);
+}
+
+
+.good-card:not(:last-child) {
+    margin-bottom: 20px;
 }
 
 .good-card__image {
@@ -17,11 +134,21 @@
 }
 
 .goods-card__description {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
     max-width: 275px;
+    width: 100%;
 }
 
 .goods-card__name {
@@ -42,6 +169,8 @@
     color: var(--black);
 }
 
+
+
 .goods-card__stock{
     width: 100%;
     margin-bottom: 4px;
@@ -51,7 +180,21 @@
     color: var(--text-gray);
 }
 
+.goods-card__description-bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
 .goods-card__provider {
+    margin-right: 6px;
     width: 100%;
     font-weight: 400;
     font-size: 13px;
@@ -59,25 +202,109 @@
     color: var(--text-gray);
 }
 
+.goods-card__description-span {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.goods-card__description-container {
+    display: none;
+    /* opacity: 0; */
+    /* visibility: hidden; */
+    position: absolute;
+    top: 30px;
+    left: -130px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 280px;
+    min-height: 104px;
+    padding: 11px 16px;
+    background-color: var(--white);
+    border-radius: 8px;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
+}
+
+.goods-card__description-span:hover .goods-card__description-container {
+    /* visibility: visible;
+    opacity: 1; */
+    display: inline-block;
+}
+
+
+.goods-card__description-container-name {
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--black);
+}
+
+.goods-card__description-container-ogrn {
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--black);
+}
+
+.goods-card__description-container-address {
+    /* margin-bottom: 8px; */
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--black);
+}
+
+
 .goods-card__actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: end;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: end;
     margin-right: 16px;
 }
 
 .goods-card__actions-with-amount {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     margin-bottom: 8px;
 }
 
 .goods-card__actions-plus, .goods-card__actions-minus {
     /* text-align: center; */
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     height: 44px;
     width: 28.5px;
     background-color: var(--white);
@@ -92,9 +319,15 @@
 }
 
 .goods-card__actions-amount {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     height: 44px;
     width: 44px;
     background-color: var(--white);
@@ -114,9 +347,16 @@
 }
 
 .goods-card__actions-bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
 }
 
 .goods-card__fav-icon, .goods-card__delete-icon {
@@ -140,23 +380,40 @@
 
 
 .goods-card__prices {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
     max-width: 120px;
     width: 100%;
 }
 
 .goods-card__prices-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
     width: 100%;
     margin-bottom: 5px;
 }
 
 .goods-card__prices-current {
+    margin-right: 5px;
     font-weight: 700;
     font-size: 20px;
     line-height: 28px;
@@ -170,12 +427,17 @@
     color: var(--black);
 }
 
+.goods-card__prices-data {
+    position: relative;
+}
+
 .goods-card__prices-previous {
     position: relative;
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
-    text-decoration: underline dashed;
+    -webkit-text-decoration: underline dashed;
+            text-decoration: underline dashed;
     color: var(--text-gray);
 }
 
@@ -190,3 +452,46 @@
     border: 0.5px solid var(--text-gray);
 }
 
+
+.goods-card__prices-discounts {
+    position: absolute;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    width: 240px;
+    min-height: 64px;
+    padding: 11px 16px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
+}
+
+.goods-card__prices-data:hover .goods-card__prices-discounts {
+    display: block;
+}
+
+.goods-card__prices-basic-discount, .goods-card__prices-user-discount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.goods-card__prices-basic-discount {
+    margin-bottom: 8px;
+}
+
+.goods-card__prices-basic-discount-percent, .goods-card__prices-user-discount-percent {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--text-gray);
+}
+
+.goods-card__prices-basic-discount-value, .goods-card__prices-user-discount-value {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--black);
+}
