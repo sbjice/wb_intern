@@ -5,6 +5,30 @@
     flex-direction: column;
 }
 
+.accordeon_bottom :not(.goods-span, .accordeon-totals) {
+    color: var(--text-gray);
+}
+
+
+
+.accordeon_bottom .good-card__image {
+    filter: grayscale(100%);
+}
+
+.accordeon_bottom .goods-checkbox, 
+.accordeon_bottom .goods-card__stock, 
+.accordeon_bottom .goods-card__description-bottom, 
+.accordeon_bottom .goods-card__actions-with-amount,
+.accordeon_bottom .goods-card__warning, 
+.accordeon_bottom .goods-card__prices {
+    display: none;
+}
+
+.accordeon_bottom .goods-card__description {
+    max-width: 309px;
+}
+
+
 .accordeon-bar {
     width: 100%;
     padding: 16px 0;
@@ -13,6 +37,18 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.accordeon:last-of-type .accordeon-bar {
+    border-bottom: none;
+}
+
+.accordeon-bar-label {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 
@@ -51,6 +87,14 @@
     max-height: 100vh;
     opacity: 1;
     /* transform: scaleY(1); */
+}
+
+.accordeon-body .good-card {
+    display: none;
+}
+
+.accordeon-body_open .good-card {
+    display: inline-flex;
 }
 
 

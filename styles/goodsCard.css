@@ -278,6 +278,7 @@
         -ms-flex-align: end;
             align-items: end;
     margin-right: 16px;
+    width: 100px;
 }
 
 .goods-card__actions-with-amount {

@@ -1,16 +1,4 @@
-export const dce = (el, cl) => {
-    const elem = document.createElement(el);
-    if (cl !== undefined) elem.classList.add(cl);
-    return elem;
-};
-export const qs = (sel) => {
-    return document.querySelector(sel);
-};
-
-const joinAdditionalProps = (props) => {
-    const arr = Object.keys(props).map(k => `${k}: ${props[k]}`);
-    return arr.join('   ');
-}
+import { dce, joinAdditionalProps} from "./utils.js";
 
 const CURRENCY = 'сом';
 const USER_DISCOUNT = 0.1;
@@ -61,15 +49,14 @@ export class Good {
 
     setCallback = (cb) => {
         this.orderCallback = cb;
+        // console.log(this.orderCallback);
     }
 
     setOrdered = (val) => {
         this.ordered = val;
-        console.log(`${this.name} ${this.ordered ? 'is' : 'is not'} ordered`);
+        // console.log(`${this.name} ${this.ordered ? 'is' : 'is not'} ordered`);
+        this.orderCallback();
     }
-
-
-
 
     createVisuals = () => {
         this.card = dce('div', 'good-card');
