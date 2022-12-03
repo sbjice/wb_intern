@@ -12,6 +12,10 @@ body {
     height: 100%;
 }
 
+body {
+    position: relative;
+}
+
 a {
     text-decoration: none;
     color: black;

@@ -30,6 +30,7 @@
 
 
 .accordeon-bar {
+    position: relative;
     width: 100%;
     padding: 16px 0;
     display: flex;
@@ -44,11 +45,13 @@
 }
 
 .accordeon-bar-label {
-    width: 50%;
+    /* width: 50%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    /* для нажатия на весь бар */
+    z-index: 30;
 }
 
 
@@ -89,17 +92,33 @@
     /* transform: scaleY(1); */
 }
 
-.accordeon-body .good-card {
+.accordeon-body .good-card,
+.accordeon-body .goods-li {
     display: none;
 }
 
-.accordeon-body_open .good-card {
+.accordeon-body_open .good-card,
+.accordeon-body_open .goods-li {
     display: inline-flex;
 }
 
 
 .accordeon-body_open {
     max-height: 100vh;
+}
+
+
+/* для нажатия на весь бар */
+
+.accordeon-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 

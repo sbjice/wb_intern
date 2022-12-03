@@ -40,7 +40,7 @@ export class Good {
         this.additionalProps = additionalProps;
         this.createVisuals();
 
-        this.left
+        // this.left
     }
 
     leftAmount = () => {
@@ -50,6 +50,15 @@ export class Good {
     setCallback = (cb) => {
         this.orderCallback = cb;
         // console.log(this.orderCallback);
+    }
+
+    setDeleteCallback = (cb) => {
+        this.deleteCallback = cb;
+        // console.log(this.deleteCallback);
+        this.actionDelete.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.deleteCallback(this);
+        });
     }
 
     setOrdered = (val) => {
@@ -179,6 +188,13 @@ export class Good {
         </g>`;
         this.actionDelete.append(svg);
         // TODO: добавить вызов deleteCallback
+        if (this.deleteCallback) {
+            this.actionDelete.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.deleteCallback(this);
+            });
+        }
+
         this.actionsBottom.append(this.actionDelete);
 
         this.actions.append(this.actionsBottom);

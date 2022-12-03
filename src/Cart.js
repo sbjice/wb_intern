@@ -1,9 +1,9 @@
-import {
-    Good
-} from "./Good.js";
-import {
-    Accordeon
-} from "./Accordeon.js";
+// import {
+//     Good
+// } from "./Good.js";
+// import {
+//     Accordeon
+// } from "./Accordeon.js";
 
 import {
     dce,
@@ -54,6 +54,7 @@ export class Cart {
     }
 
     countTotalForCard = () => {
+        console.log(this.goods);
         this.totals = countTotal(this.goods);
         this.accordeonTotals.textContent = this.setTotalsText();
         // console.log(this.totals);
@@ -63,9 +64,10 @@ export class Cart {
         return `${this.totals.amount} ${getWordByAmount(this.totals.amount)} · ${prettifyPrice(this.totals.currentPrice)} ${CURRENCY}`;
     }
 
-    fillList = (arr, list, innerArr, callback) => {
+    fillList = (arr, itemsList, visualsList, callback, deleteCallback) => {
         for (let good of arr) {
             if (callback) good.setCallback(callback);
+            if (deleteCallback) good.setDeleteCallback(deleteCallback);
 
             const li = dce('li', 'goods-li');
 
@@ -77,29 +79,33 @@ export class Cart {
 
             goodCheckbox.checked = good.ordered;
             li.append(goodCheckbox, good.card);
-            innerArr.push({
+            visualsList.push({
                 goodCheckbox,
-                good
+                good,
+                li
             });
-            list.append(li);
+            itemsList.append(li);
         }
     }
 
     fillGoodsVisuals = () => {
         this.getAvailableItems();
-        this.getUnavailableItems()
+        this.getUnavailableItems();
 
         if (this.availableGoods.length) {
             this.fillList(this.availableGoods,
                 this.ul,
                 this.goodsVisuals,
-                this.countTotalForCard);
+                this.countTotalForCard,
+                this.deleteGood);
         }
 
         if (this.unavailableGoods.length) {
             this.fillList(this.unavailableGoods,
                 this.ulUnavailable,
-                this.goodsVisualsUnavailable);
+                this.goodsVisualsUnavailable,
+                null,
+                this.deleteGood);
         }
 
         this.setTextForUnavailableItems();
@@ -113,10 +119,10 @@ export class Cart {
     }
 
     getUnavailableItems = () => {
-        this.unavailableGoods = this.goods.
-        filter(good => {
-            return (good.availableAmount + good.secondAvailableAmount) === 0;
-        });
+        this.unavailableGoods = this.goods
+            .filter(good => {
+                return (good.availableAmount + good.secondAvailableAmount) === 0;
+            });
     }
 
     setTextForUnavailableItems = () => {
@@ -127,5 +133,46 @@ export class Cart {
     changeLabelVisibility = () => {
         this.accordeonTotals.classList.toggle('accordeon-totals_hidden');
         this.goodsLabel.classList.toggle('goods-label_visible');
+    }
+
+    deleteGood = (good) => {
+
+        this.goods = this.goods.filter(item => {
+            return item !== good;
+        });
+
+
+        // удаление li из списка
+        this.goodsVisuals.forEach(item => {
+            if (item.good.card === good.card) this.ul.removeChild(item.li);
+        });
+
+        this.goodsVisuals = this.goodsVisuals.filter(item => {
+            return item.good !== good;
+        });
+
+
+
+        this.countTotalForCard();
+        
+
+
+        this.goodsVisualsUnavailable.forEach(item => {
+            if (item.good.card === good.card) this.ulUnavailable.removeChild(item.li);
+        });
+
+        this.goodsVisualsUnavailable = this.goodsVisualsUnavailable.filter(item => {
+            return item.good !== good;
+        });
+        
+        this.getUnavailableItems();
+
+        this.setTextForUnavailableItems();
+
+
+
+
+
+
     }
 }

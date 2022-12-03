@@ -24,7 +24,7 @@ export const countTotal = (goods) => {
     let basicPrice = 0;
     let currentPrice = 0;
     goods.forEach(good => {
-        if (good.ordered) {
+        if (good.ordered && (good.availableAmount + good.secondAvailableAmount) > 0) {
             amount += good.orderedAmount;
             basicPrice += good.orderedAmount * good.basicPrice;
             currentPrice += good.orderedAmount * good.currentPrice;
@@ -53,10 +53,10 @@ export const joinAdditionalProps = (props) => {
     return arr.join('   ');
 }
 
-export const months = ['января','февраля','марта',
-                        'апреля', 'мая', 'июня',
-                        'июля', 'августа', 'сентября', 
-                        'октября', 'ноября', 'декабря',];
+// export const months = ['января','февраля','марта',
+//                         'апреля', 'мая', 'июня',
+//                         'июля', 'августа', 'сентября', 
+//                         'октября', 'ноября', 'декабря',];
 
 // export const getDateFromString = (str) => {
 //     const vals = str.split('.')
