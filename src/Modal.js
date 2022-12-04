@@ -1,6 +1,6 @@
 import { dce } from "./utils.js";
 
-export class Modal {
+class Modal {
     constructor(child, body) {
         this.child = child;
         this.outerBody = body;
@@ -41,3 +41,5 @@ export class Modal {
         this.container.append(this.child);
     }
 }
+
+export const m = new Modal(null, document.body);

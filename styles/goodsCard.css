@@ -152,6 +152,7 @@
 }
 
 .goods-card__name {
+    cursor: pointer;
     width: 100%;
     margin-bottom: 8px;
     font-weight: 400;
@@ -203,6 +204,7 @@
 }
 
 .goods-card__description-span {
+    cursor: pointer;
     position: relative;
     width: 20px;
     height: 20px;
@@ -370,6 +372,10 @@
     margin-right: 16px;
 }
 
+.goods-card__actions-fav, .goods-card__actions-delete { 
+    cursor: pointer;
+}
+
 
 .goods-card__actions-fav_checked .goods-card__fav-icon g path { 
     fill: var(--red);
@@ -433,6 +439,7 @@
 }
 
 .goods-card__prices-previous {
+    cursor: pointer;
     position: relative;
     font-weight: 400;
     font-size: 13px;

@@ -5,6 +5,8 @@
     flex-direction: column;
 }
 
+
+
 .accordeon_bottom :not(.goods-span, .accordeon-totals) {
     color: var(--text-gray);
 }
@@ -41,6 +43,10 @@
 }
 
 .accordeon:last-of-type .accordeon-bar {
+    border-bottom: none;
+}
+
+.accordeon_bottom .accordeon-bar {
     border-bottom: none;
 }
 

@@ -13,6 +13,8 @@ import {
 } from "./utils.js";
 const CURRENCY = 'сом';
 
+import { months } from "./data.js";
+
 
 
 export class Cart {
@@ -51,6 +53,9 @@ export class Cart {
         this.goodsSpan = dce('span', 'goods-span');
         this.goodsSpan.textContent = 'Выбрать все';
         this.goodsLabel.append(this.goodsCheckbox, this.goodsSpan);
+        this.countDeliveryStats();
+        // console.log(this.deliveryStats);
+        this.generateDeliveryDatesTexts();
     }
 
     countTotalForCard = () => {
@@ -170,6 +175,75 @@ export class Cart {
         this.setTextForUnavailableItems();
 
 
+
+
+
+
+    }
+
+    countDeliveryStats = () => {
+        this.deliveryStats = {};
+        for (let good of this.goods) {
+            if((good.availableAmount + good.secondAvailableAmount) > 0 
+                && good.ordered) {
+                let deliveryInterval = good.deliveryFirstDate + '-' + good.deliveryLastDate;
+                if (this.deliveryStats[deliveryInterval] === undefined) {
+                    this.deliveryStats[deliveryInterval] = [];
+                }
+                this.deliveryStats[deliveryInterval].push({
+                    'good': good,
+                    'deliveryAmount': good.availableAmount
+                });
+
+                if (good.orderedAmount > good.availableAmount) {
+                    deliveryInterval = good.secondDeliveryFirstDate + '-' + good.secondDeliveryLastDate;
+                    if (this.deliveryStats[deliveryInterval] === undefined) {
+                        this.deliveryStats[deliveryInterval] = [];
+                    }
+                    this.deliveryStats[deliveryInterval].push({
+                        'good': good,
+                        'deliveryAmount': good.orderedAmount - good.availableAmount,
+                    });
+                }
+
+            }
+
+            
+        }
+    }
+
+    generateDeliveryDatesTexts = () => {
+        const dTexts = {};
+        for (let key of Object.keys(this.deliveryStats)) {
+            let [firstDate, secondDate] = key.split('-');
+            // console.log(firstDate, secondDate);
+            let [firstDateDay, firstDateMonth] = firstDate.split('.');
+            let [secondDateDay, secondDateMonth] = secondDate.split('.');
+
+            let firstDateDayNumber = +firstDateDay; 
+            let firstDateMonthNumber = +firstDateMonth - 1; 
+            let secondDateDayNumber = +secondDateDay; 
+            let secondDateMonthNumber = +secondDateMonth - 1; 
+
+
+            const delString = firstDateMonthNumber === secondDateMonthNumber ? 
+                        `${firstDateDayNumber} - ${secondDateDayNumber} ${months[firstDateMonthNumber]}` :
+                        `${firstDateDayNumber} ${months[firstDateMonthNumber]} - ${secondDateDayNumber} ${months[secondDateMonthNumber]}`;
+
+            dTexts[delString] = this.deliveryStats[key];
+
+        }
+        // console.log(dTexts);
+        // console.log(Object.keys(this.deliveryStats).sort((a,b) => {
+        //     if (a < b) { return -1; }
+        //     if (a > b) { return 1; }
+        //     return 0;
+        // } ));
+        // console.log(Object.keys(this.deliveryStats).sort((a,b) => {
+        //     if (a > b) { return -1; }
+        //     if (a < b) { return 1; }
+        //     return 0;
+        // } ));
 
 
 

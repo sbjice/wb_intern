@@ -53,10 +53,6 @@ export const joinAdditionalProps = (props) => {
     return arr.join('   ');
 }
 
-// export const months = ['января','февраля','марта',
-//                         'апреля', 'мая', 'июня',
-//                         'июля', 'августа', 'сентября', 
-//                         'октября', 'ноября', 'декабря',];
 
 // export const getDateFromString = (str) => {
 //     const vals = str.split('.')
@@ -98,3 +94,7 @@ export const joinAdditionalProps = (props) => {
 //         }
 //     });
 // };
+
+
+
+

@@ -140,3 +140,55 @@ export const goods1 = [
     
 
 ];
+
+export const cardImages = {
+    mir: {
+        src: '../assets/img/card_mir.svg',
+        alt: 'mir card alt',
+    },
+    maestro:{
+        src: '../assets/img/card_maestro.svg',
+        alt: 'maestro card alt',
+    },
+    mastercard: {
+        src: '../assets/img/card_mastercard.svg',
+        alt: 'mastercard card alt',
+    },
+    visa: {
+        src: '../assets/img/card_visa.svg',
+        alt: 'visa card alt',
+    },
+};
+
+export const cardsData = [
+    {
+        cardNumber: '1234 56•• •••• 1234',
+        cardImageSrc: cardImages.mir.src,
+        cardImageAlt: cardImages.mir.alt,
+        cardDate: '01/30'
+    },
+    {
+        cardNumber: '1234 56•• •••• 1234',
+        cardImageSrc: cardImages.visa.src,
+        cardImageAlt: cardImages.visa.alt,
+        cardDate: '12/25'
+    },
+    {
+        cardNumber: '1234 56•• •••• 1234',
+        cardImageSrc: cardImages.mastercard.src,
+        cardImageAlt: cardImages.mastercard.alt,
+        cardDate: '02/28'
+    },
+    {
+        cardNumber: '1234 56•• •••• 1234',
+        cardImageSrc: cardImages.maestro.src,
+        cardImageAlt: cardImages.maestro.alt,
+        cardDate: '05/23'
+    },
+];
+
+
+export const months = ['января','февраля','марта',
+                        'апреля', 'мая', 'июня',
+                        'июля', 'августа', 'сентября', 
+                        'октября', 'ноября', 'декабря',];

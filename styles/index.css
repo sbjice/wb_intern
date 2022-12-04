@@ -11,6 +11,7 @@
 @import url('./accordeon.css');
 
 @import url('./modal.css');
+@import url('./payment.css');
 
 @import url('./test.css');
 
@@ -27,4 +28,17 @@
 
 .no-overflow {
     overflow: hidden;
+}
+
+.section-header {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.1px;
+
+    color: var(--black);
+}
+
+.dn {
+    display: none;
 }

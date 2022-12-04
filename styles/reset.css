@@ -14,7 +14,14 @@ body {
 
 body {
     position: relative;
+    background-color: var(--light-gray);
 }
+
+img {
+    font-size: 0;
+    display: inline-block;
+}
+
 
 a {
     text-decoration: none;
