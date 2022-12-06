@@ -187,7 +187,6 @@ export class Good {
         <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="black"/>
         </g>`;
         this.actionDelete.append(svg);
-        // TODO: добавить вызов deleteCallback
         if (this.deleteCallback) {
             this.actionDelete.addEventListener('click', (e) => {
                 e.preventDefault();

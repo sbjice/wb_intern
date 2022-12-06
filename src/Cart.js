@@ -15,6 +15,8 @@ const CURRENCY = 'сом';
 
 import { months } from "./data.js";
 
+const DATE_SEPARATOR = '\u{02014}';
+
 
 
 export class Cart {
@@ -59,10 +61,9 @@ export class Cart {
     }
 
     countTotalForCard = () => {
-        console.log(this.goods);
         this.totals = countTotal(this.goods);
         this.accordeonTotals.textContent = this.setTotalsText();
-        // console.log(this.totals);
+        this.countDeliveryStats();
     }
 
     setTotalsText = () => {
@@ -186,17 +187,17 @@ export class Cart {
         for (let good of this.goods) {
             if((good.availableAmount + good.secondAvailableAmount) > 0 
                 && good.ordered) {
-                let deliveryInterval = good.deliveryFirstDate + '-' + good.deliveryLastDate;
+                let deliveryInterval = good.deliveryFirstDate + DATE_SEPARATOR + good.deliveryLastDate;
                 if (this.deliveryStats[deliveryInterval] === undefined) {
                     this.deliveryStats[deliveryInterval] = [];
                 }
                 this.deliveryStats[deliveryInterval].push({
                     'good': good,
-                    'deliveryAmount': good.availableAmount
+                    'deliveryAmount': good.orderedAmount > good.availableAmount ? good.availableAmount : good.orderedAmount,
                 });
 
                 if (good.orderedAmount > good.availableAmount) {
-                    deliveryInterval = good.secondDeliveryFirstDate + '-' + good.secondDeliveryLastDate;
+                    deliveryInterval = good.secondDeliveryFirstDate + DATE_SEPARATOR + good.secondDeliveryLastDate;
                     if (this.deliveryStats[deliveryInterval] === undefined) {
                         this.deliveryStats[deliveryInterval] = [];
                     }
@@ -210,12 +211,17 @@ export class Cart {
 
             
         }
+        this.generateDeliveryDatesTexts();
+        if (this.callbackForUpdatingDeliveryData) this.callbackForUpdatingDeliveryData(this.dTexts);
+
+        // if (this.callbackForUpdatingDeliveryData) this.callbackForUpdatingDeliveryData(this.deliveryStats);
     }
 
     generateDeliveryDatesTexts = () => {
-        const dTexts = {};
+        this.dTexts = {};
         for (let key of Object.keys(this.deliveryStats)) {
-            let [firstDate, secondDate] = key.split('-');
+            // console.log(key);
+            let [firstDate, secondDate] = key.split(DATE_SEPARATOR);
             // console.log(firstDate, secondDate);
             let [firstDateDay, firstDateMonth] = firstDate.split('.');
             let [secondDateDay, secondDateMonth] = secondDate.split('.');
@@ -227,16 +233,18 @@ export class Cart {
 
 
             const delString = firstDateMonthNumber === secondDateMonthNumber ? 
-                        `${firstDateDayNumber} - ${secondDateDayNumber} ${months[firstDateMonthNumber]}` :
-                        `${firstDateDayNumber} ${months[firstDateMonthNumber]} - ${secondDateDayNumber} ${months[secondDateMonthNumber]}`;
+                        `${firstDateDayNumber}\u{02014}${secondDateDayNumber} ${months[firstDateMonthNumber]}` :
+                        `${firstDateDayNumber} ${months[firstDateMonthNumber]}\\U+02014${secondDateDayNumber} ${months[secondDateMonthNumber]}`;
 
-            dTexts[delString] = this.deliveryStats[key];
+                        this.dTexts[delString] = this.deliveryStats[key];
 
         }
-        // console.log(dTexts);
+
+        // сортировка дат по возрастанию / убыванию
+        
         // console.log(Object.keys(this.deliveryStats).sort((a,b) => {
-        //     if (a < b) { return -1; }
-        //     if (a > b) { return 1; }
+        //     if (a < b) { return 1; }
+        //     if (a > b) { return -1; }
         //     return 0;
         // } ));
         // console.log(Object.keys(this.deliveryStats).sort((a,b) => {
@@ -244,9 +252,9 @@ export class Cart {
         //     if (a < b) { return 1; }
         //     return 0;
         // } ));
+    }
 
-
-
-
+    setCallbackForUpdatingDeliveryData = (cb) => {
+        this.callbackForUpdatingDeliveryData = cb;
     }
 }

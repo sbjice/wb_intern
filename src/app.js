@@ -4,64 +4,49 @@ import { m } from "./Modal.js";
 import { dce } from "./utils.js";
 
 import { Cart } from "./Cart.js";
-import { PaymentCard } from "./PaymentCard.js";
 import { PaymentChoice } from "./PaymentChoice.js";
-import { goods0, cardsData } from "./data.js";
+
+import { goods0, cards, deliveryPlaces } from "./data.js";
+import { Delivery } from "./Delivery.js";
 
 const CURRENCY = 'сом';
 
 
 const body = document.body;
-
-
-// const m = new Modal(null, body);
+body.append(m.modal);
 
 const cart0 = new Cart(goods0);
 const acc0 = new Accordeon(cart0.goodsLabel, cart0.accordeonTotals, cart0.ul, cart0.changeLabelVisibility);
-
-
-// const cart1 = new Cart(goods1);
 const acc1 = new Accordeon(cart0.accordeonTotalsUnavailable, cart0.accordeonTotalsUnavailable, cart0.ulUnavailable);
-
-
 acc1.accordeon.classList.add('accordeon_bottom');
 
 body.append(acc0.accordeon, acc1.accordeon);
 
-// const block = dce('div', 'payment-choose');
-const cards = [];
 
-for (let card of cardsData) {
-    const c = new PaymentCard(
-        card.cardNumber,
-        card.cardImageSrc,
-        card.cardImageAlt,
-        card.cardDate
-        );
-    cards.push(c);
-    // block.append(c.cardData);
-}
+const del = new Delivery(cart0.dTexts, deliveryPlaces);
+cart0.setCallbackForUpdatingDeliveryData(del.updateDeliveryList);
+
+body.append(del.basicContainer);
+
 
 const pc = new PaymentChoice(cards);
 
-
-
-
-
-
-// const block = dce('div', 'block');
-// body.append(block);
-// m.appendChild(block);
-
-
-
-
-
-body.append(m.modal);
 body.append(pc.basicContainer);
 
-// body.append(block);
-// body.append(cards[0].cardData);
+// body.append(del.deliveryChangeContainer);
 
 
-// m.openModal();
+
+
+
+
+//проверка перерисовки через класс контроллер
+
+// import { Delivery } from "./test/Delivery.js";
+// import { dc } from "./deliverycontroller.js";
+
+// const del = new Delivery(cart0.deliveryStats);
+// const delController = new dc(del.redraw);
+// cart0.setCallbackForUpdatingDeliveryData(delController.call);
+// console.log(del.trigger);
+// body.append(del.trigger);

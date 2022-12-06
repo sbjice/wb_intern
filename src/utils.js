@@ -14,9 +14,8 @@ export const prettifyPrice = (price) => {
 
 export const getWordByAmount = (amount) => {
     if (amount % 10 === 0 || (amount % 10 > 4 && amount % 100 < 21)) return 'товаров';
-    else if (amount % 10 > 0 && amount % 10 < 5) return 'товара';
+    else if (amount % 10 > 1 && amount % 10 < 5) return 'товара';
     else return 'товар';
-
 }
 
 export const countTotal = (goods) => {
