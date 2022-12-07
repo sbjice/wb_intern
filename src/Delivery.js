@@ -19,7 +19,7 @@ export class Delivery {
     }
 
     createBasicContainer = () => {
-        this.basicContainer = dce('div', 'delivery');
+        this.basicContainer = dce('section', 'delivery');
         this.basicContainer.classList.add('delivery_basic');
         this.basicContainerTop = dce('div', 'delivery-top');
         this.basicContainerHeader = dce('h2', 'section-header')

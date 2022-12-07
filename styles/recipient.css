@@ -1,0 +1,135 @@
+.recipient {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: 20px;
+    max-width: 640px;
+    min-height: 112px;
+    padding: 16px 24px;
+    background: var(--white);
+    border-radius: 16px;
+}
+
+.recipient__header {
+    margin-bottom: 16px;
+}
+
+.recipient__form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+    max-width: 590px;
+    width: 100%;
+
+}
+
+
+.recipient-fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 64px;
+}
+
+.recipient-label {
+    visibility: hidden;
+    margin-bottom: 2px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--text-gray);
+}
+
+.recipient-label_visible {
+    visibility: visible;
+}
+
+
+/* переделать на событие инпут самого инпута */
+/* .recipient-fieldset:focus-within .recipient-label{
+    visibility: visible;
+} */
+
+.recipient-input {
+    margin-bottom: 4px;
+    height: 27px;
+    padding: 7px 0;
+    border: none;
+    border-bottom: 1px solid var(--light-input-gray);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black);
+    transition: all .5s ease-in-out;
+}
+
+
+.recipient-input:focus {
+    outline: none;
+}
+
+.recipient-input_error {
+    border-bottom-color: var(--red);
+    color: var(--red);
+}
+
+.recipient-input::placeholder {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-gray);
+}
+
+.recipient-message {
+    visibility: hidden;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--red);
+}
+
+.recipient__index-message {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--black);
+}
+
+.recipient__index-message_error {
+    color: var(--red);
+}
+
+.recipient-message_error {
+    visibility: visible;
+}
+
+.recipient-message_black {
+    visibility: visible;
+    color: var(--black);
+}
+
+.recipient__name-fieldset,  
+.recipient__surname-fieldset {
+    max-width: 283px;
+    width: 100%;
+}
+
+.recipient__email-fieldset,  
+.recipient__phone-fieldset,   
+.recipient__index-fieldset { 
+    max-width: 180px;
+    width: 100%;
+}
+
+.recipient__name-input,
+.recipient__surname-input,
+.recipient__email-input,
+.recipient__phone-input,   
+.recipient__index-input {
+    width: 100%;
+}
+
+

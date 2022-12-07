@@ -22,7 +22,7 @@ export class PaymentChoice {
 
 
     createBasicContainer = () => {
-        this.basicContainer = dce('div', 'payment-choose');
+        this.basicContainer = dce('section', 'payment-choose');
         this.basicContainer.classList.add('payment-choose_basic');
         this.basicContainerTop = dce('div', 'payment-top');
         this.basicContainerHeader = dce('h2', 'section-header')

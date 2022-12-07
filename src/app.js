@@ -1,13 +1,13 @@
-import { Accordeon } from "./Accordeon.js";
-// import { Modal } from "./Modal.js";
 import { m } from "./Modal.js";
-import { dce } from "./utils.js";
+import { Accordeon } from "./Accordeon.js";
+
+import { goods0, cards, deliveryPlaces } from "./data.js";
 
 import { Cart } from "./Cart.js";
 import { PaymentChoice } from "./PaymentChoice.js";
-
-import { goods0, cards, deliveryPlaces } from "./data.js";
 import { Delivery } from "./Delivery.js";
+import { Recipient } from "./Recipient.js";
+
 
 const CURRENCY = 'сом';
 
@@ -32,6 +32,10 @@ body.append(del.basicContainer);
 const pc = new PaymentChoice(cards);
 
 body.append(pc.basicContainer);
+
+const r = new Recipient();
+
+body.append(r.basicContainer);
 
 // body.append(del.deliveryChangeContainer);
 

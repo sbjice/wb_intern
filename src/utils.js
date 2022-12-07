@@ -95,5 +95,58 @@ export const joinAdditionalProps = (props) => {
 // };
 
 
+export const filterPhoneInput = (text) => {
+    let raw = text
+        .split('')
+        .filter(char => char.charCodeAt(0) > 41 &&
+            char.charCodeAt(0) < 58 && char !== ' ')
+        .join('')
+        .substr(0, 30);
+    // console.log(raw);
+    let val = '';
+    if (raw[0] === '+') raw = raw.substr(1);
 
+    for (let i = 0; i < raw.length; i += 1) {
+        if (i > 10) break;
+        if (i === 0) {
+            val += '+7';
+            if (raw[i] === '7' || raw[i] === '8') continue;
+            else val += ' ' + raw[i];
+        } else if (i === 1 || i === 4 || i === 7 || i === 9) {
+            val += ' ' + raw[i];
+        } else val += raw[i];
+    }
+    return val;
+}
 
+export const validatePhoneInput = (text) => {
+    let inputVal = text
+                .substr(1)
+                .split('')
+                .filter(char => {
+                       return char !== ' '
+                    })
+                .join('');
+    let filtered = inputVal
+                .split('')
+                .filter(char => {
+                    return char.charCodeAt(0) > 47 &&
+                            char.charCodeAt(0) < 58
+                })
+                .join('');
+
+    return inputVal === filtered && (inputVal.length >= 11);
+}
+
+export const filterIndexInput = (text) => {
+    let inputVal = text
+                .split('')
+                .filter(char => {
+                       return char.charCodeAt(0) > 47 &&
+                       char.charCodeAt(0) < 58
+                    })
+                .join('')
+                .substr(0, 10);  
+
+    return inputVal;
+}
