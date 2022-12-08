@@ -6,8 +6,9 @@ export const prettifyPrice = (price) => {
         return `${thousands} ${other}`;
     } else {
         const millions = Math.floor(price / 1000000);
-        const thousands = Math.floor((price % 1000000) / 1000);
+        const thousands = Math.floor((price % 1000000) / 1000).toString().padStart(3, '0');
         const other = Math.floor(price % 1000).toString().padStart(3, '0');
+        console.log(`${millions}, ${thousands}, ${other}`);
         return `${millions} ${thousands} ${other}`;
     };
 }
@@ -32,8 +33,8 @@ export const countTotal = (goods) => {
 
     return ({
         amount,
-        basicPrice,
-        currentPrice
+        'basicPrice': Math.round(basicPrice),
+        'currentPrice': Math.round(currentPrice),
     });
 }
 

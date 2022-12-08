@@ -1,4 +1,4 @@
-import { dce, joinAdditionalProps} from "./utils.js";
+import { dce, joinAdditionalProps, prettifyPrice } from "./utils.js";
 
 const CURRENCY = 'сом';
 const USER_DISCOUNT = 0.1;
@@ -72,6 +72,7 @@ export class Good {
 
         this.image = dce('img', 'good-card__image');
         this.image.src = this.imageSrc;
+        this.image.alt = this.imageSrc;
         this.card.append(this.image);
 
         this.description = dce('div', 'goods-card__description');
@@ -90,7 +91,7 @@ export class Good {
         this.providerElement = dce('p', 'goods-card__provider');
         this.providerElement.textContent = this.provider.name;
 
-        this.descriptionSpan = dce('span', 'goods-card__description-span');
+        this.descriptionDiv = dce('div', 'goods-card__description-span');
 
         let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('goods-card__description-icon');
@@ -103,7 +104,7 @@ export class Good {
         <circle cx="10" cy="10" r="7.5" stroke="#9797AF"/>
         <path d="M9.88867 7.58691C9.62826 7.58691 9.41504 7.51042 9.24902 7.35742C9.08301 7.20117 9 7.01074 9 6.78613C9 6.55501 9.08301 6.36621 9.24902 6.21973C9.41504 6.07324 9.62826 6 9.88867 6C10.1523 6 10.3656 6.07324 10.5283 6.21973C10.6943 6.36621 10.7773 6.55501 10.7773 6.78613C10.7773 7.02051 10.6943 7.21257 10.5283 7.3623C10.3656 7.51204 10.1523 7.58691 9.88867 7.58691ZM10.6504 13.3779H9.10742V8.37793H10.6504V13.3779Z" fill="#9797AF"/>
         </g>`;
-        this.descriptionSpan.append(svg);
+        this.descriptionDiv.append(svg);
         this.descriptionContainer = dce('div', 'goods-card__description-container');
         this.descriptionContainerName = dce('p', 'goods-card__description-container-name');
         this.descriptionContainerName.textContent = this.provider.name;
@@ -113,8 +114,8 @@ export class Good {
         this.descriptionContainerAddress.textContent = this.provider.address;
         this.descriptionContainer.append(this.descriptionContainerName, this.descriptionContainerOGRN, this.descriptionContainerAddress);
 
-        this.descriptionSpan.append(this.descriptionContainer);
-        this.descriptionBottom.append(this.providerElement, this.descriptionSpan);
+        this.descriptionDiv.append(this.descriptionContainer);
+        this.descriptionBottom.append(this.providerElement, this.descriptionDiv);
 
         this.description.append(this.stockElement, this.descriptionBottom);
         this.card.append(this.description);
@@ -205,7 +206,7 @@ export class Good {
         this.pricesTop = dce('div', 'goods-card__prices-top');
 
         this.pricesCurrent = dce('p', 'goods-card__prices-current');
-        this.pricesCurrent.textContent = Math.round(this.currentPrice * this.orderedAmount); //* (1 - USER_DISCOUNT)
+        this.pricesCurrent.textContent = prettifyPrice(Math.round(this.currentPrice * this.orderedAmount)); //* (1 - USER_DISCOUNT)
 
         this.pricesCurrency = dce('p', 'goods-card__prices-currency');
         this.pricesCurrency.textContent = CURRENCY;
@@ -214,7 +215,7 @@ export class Good {
         this.pricesData = dce('div', 'goods-card__prices-data');
 
         this.pricesPrevious = dce('p', 'goods-card__prices-previous');
-        this.pricesPrevious.textContent = Math.round(this.basicPrice * this.orderedAmount) + ' ' + CURRENCY;
+        this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
 
         this.pricesData.append(this.pricesPrevious);
 
@@ -223,7 +224,7 @@ export class Good {
         this.pricesDiscountsBasicDiscountPercent = dce('p', 'goods-card__prices-basic-discount-percent');
         this.pricesDiscountsBasicDiscountPercent.textContent = `Скидка ${Math.round((1 - (this.currentPrice / this.basicPrice)) * 100)}%`;
         this.pricesDiscountsBasicDiscountValue = dce('p', 'goods-card__prices-basic-discount-value');
-        this.pricesDiscountsBasicDiscountValue.textContent = `-${this.basicPrice - this.currentPrice} ${CURRENCY}`;
+        this.pricesDiscountsBasicDiscountValue.textContent = `-${prettifyPrice(this.basicPrice - this.currentPrice)} ${CURRENCY}`;
         this.pricesDiscountsBasicDiscount.append(this.pricesDiscountsBasicDiscountPercent, this.pricesDiscountsBasicDiscountValue);
 
         this.pricesDiscountsUserDiscount = dce('div', 'goods-card__prices-user-discount');
@@ -234,6 +235,34 @@ export class Good {
         this.pricesDiscountsUserDiscount.append(this.pricesDiscountsUserDiscountPercent, this.pricesDiscountsUserDiscountValue);
         this.pricesDiscounts.append(this.pricesDiscountsBasicDiscount, this.pricesDiscountsUserDiscount);
         this.pricesData.append(this.pricesDiscounts);
+
+
+
+        this.actionPlus.addEventListener('click', () => {
+            if (this.leftAmount() >= 1) {
+                this.orderedAmount += 1;
+            }
+            this.actionAmount.textContent = this.orderedAmount;
+            this.warning.textContent = 'Осталось ' + this.leftAmount() + ' шт.';
+            this.warning.classList.toggle('goods-card__warning_hidden', this.leftAmount() > 5);
+            this.pricesCurrent.textContent = prettifyPrice(Math.round(this.currentPrice * this.orderedAmount)); //* (1 - USER_DISCOUNT)
+            this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
+            
+            if (this.orderCallback) this.orderCallback();
+        });
+
+        this.actionMinus.addEventListener('click', () => {
+            if ((this.orderedAmount - 1) > -1) {
+                this.orderedAmount -= 1;
+            }
+            this.actionAmount.textContent = this.orderedAmount;
+            this.warning.textContent = 'Осталось ' + this.leftAmount() + ' шт.';
+            this.warning.classList.toggle('goods-card__warning_hidden', this.leftAmount() > 5);
+            this.pricesCurrent.textContent = prettifyPrice(Math.round(this.currentPrice * this.orderedAmount)); //* (1 - USER_DISCOUNT)
+            this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
+    
+            if (this.orderCallback) this.orderCallback();
+        });
 
 
         this.prices.append(this.pricesTop, this.pricesData);

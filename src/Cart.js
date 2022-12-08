@@ -64,6 +64,7 @@ export class Cart {
         this.totals = countTotal(this.goods);
         this.accordeonTotals.textContent = this.setTotalsText();
         this.countDeliveryStats();
+        if (this.callbackForUpdatingOrderInfo) this.callbackForUpdatingOrderInfo(this.totals);
     }
 
     setTotalsText = () => {
@@ -213,6 +214,7 @@ export class Cart {
         }
         this.generateDeliveryDatesTexts();
         if (this.callbackForUpdatingDeliveryData) this.callbackForUpdatingDeliveryData(this.dTexts);
+        if (this.callbackForUpdatingDeliveryTexts) this.callbackForUpdatingDeliveryTexts(this.dTexts);
 
         // if (this.callbackForUpdatingDeliveryData) this.callbackForUpdatingDeliveryData(this.deliveryStats);
     }
@@ -256,5 +258,13 @@ export class Cart {
 
     setCallbackForUpdatingDeliveryData = (cb) => {
         this.callbackForUpdatingDeliveryData = cb;
+    }
+
+    setCallbackForUpdatingOrderInfo = (cb) => {
+        this.callbackForUpdatingOrderInfo = cb;
+    }
+
+    setCallbackForUpdatingDeliveryTexts = (cb) => {
+        this.callbackForUpdatingDeliveryTexts = cb;
     }
 }

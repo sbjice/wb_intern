@@ -5,6 +5,12 @@
 * Browsers: last 4 version
 */
 
+.goods-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .goods-label {
     display: none;
     -webkit-box-orient: horizontal;
@@ -298,6 +304,7 @@
 }
 
 .goods-card__actions-plus, .goods-card__actions-minus {
+    cursor: pointer;
     /* text-align: center; */
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
@@ -422,8 +429,8 @@
 .goods-card__prices-current {
     margin-right: 5px;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 16px;
+    line-height: 24px;
     color: var(--black);
 }
 

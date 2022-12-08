@@ -15,8 +15,7 @@ export class PaymentChoice {
         if (this.cards) this.createCardChangeContainer();
 
         this.basicContainerChangeButton.addEventListener('click', (e) => {
-            m.appendChild(this.cardChangeContainer);
-            m.openModal();
+            this.openModalForChanging();
         });
     }
 
@@ -115,6 +114,7 @@ export class PaymentChoice {
             for (let card of this.cards) {
                 if (card.cardCheck.checked) {
                     this.selectedCard = card;
+                    if (this.changeCallback) this.changeCallback(this.selectedCard);
                     this.redraw();
                     m.closeModal();
                     return;
@@ -127,6 +127,11 @@ export class PaymentChoice {
 
     setChangeCallback = (cb) => {
         this.changeCallback = cb;
+    }
+
+    openModalForChanging = () => {
+        m.appendChild(this.cardChangeContainer);
+        m.openModal();
     }
 
 

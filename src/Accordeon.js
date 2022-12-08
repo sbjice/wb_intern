@@ -1,13 +1,14 @@
 import { dce } from "./utils.js";
 
 export class Accordeon {
-    constructor(elementShownOnOpened, elementShownOnClosed, elementForBody, callback) {
+    constructor(elementShownOnOpened, elementShownOnClosed, elementForBody, callback, additionalClass) {
         this.elementShownOnOpened = elementShownOnOpened;
         this.elementShownOnClosed = elementShownOnClosed;    
         this.callback = callback;
         this.elementForBody = elementForBody;
 
         this.accordeon = dce('div', 'accordeon');
+        if (additionalClass) this.accordeon.classList.add(additionalClass);
         this.accordeonBar = dce('div', 'accordeon-bar');
         this.accordeonLink = dce('a','accordeon-link');
         this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");

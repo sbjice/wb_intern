@@ -71,13 +71,13 @@ export class Recipient {
             this.showLabelOnFilledInput(this.nameLabel, this.nameInput);
             this.nameInputValid = this.nameInput.value !== '' || this.nameInputValid;
             console.log(this.nameInputValid);
-            this.showError(this.nameMessage, this.nameInput, !this.nameInputValid);
+            this.showError(this.nameMessage, this.nameInput, !this.nameInputValid, 'Укажите имя');
         });
 
 
         this.nameInput.addEventListener('blur', () => {
             this.nameInputValid = this.nameInput.value !== '';
-            this.showError(this.nameMessage, this.nameInput, !this.nameInputValid);
+            this.showError(this.nameMessage, this.nameInput, !this.nameInputValid, 'Укажите имя');
         });
 
         this.nameFieldset.append(this.nameLabel, this.nameInput, this.nameMessage);
@@ -103,12 +103,12 @@ export class Recipient {
         this.surnameInput.addEventListener('input', () => {
             this.showLabelOnFilledInput(this.surnameLabel, this.surnameInput);
             this.surnameInputValid = this.surnameInput.value !== '' || this.surnameInputValid;
-            this.showError(this.surnameMessage, this.surnameInput, !this.surnameInputValid);
+            this.showError(this.surnameMessage, this.surnameInput, !this.surnameInputValid, 'Введите фамилию');
         });
 
         this.surnameInput.addEventListener('blur', () => {
             this.surnameInputValid = this.surnameInput.value !== '';
-            this.showError(this.surnameMessage, this.surnameInput, !this.surnameInputValid);
+            this.showError(this.surnameMessage, this.surnameInput, !this.surnameInputValid, 'Введите фамилию');
         });
 
 
@@ -136,12 +136,12 @@ export class Recipient {
         this.emailInput.addEventListener('input', () => {
             this.showLabelOnFilledInput(this.emailLabel, this.emailInput);
             this.emailInputValid = this.emailInput.value.match(EMAIL_REGEXP) || this.emailInputValid;
-            this.showError(this.emailMessage, this.emailInput, !this.emailInputValid);
+            this.showError(this.emailMessage, this.emailInput, !this.emailInputValid, 'Укажите правильную почту', 'Проверьте адрес электронной почты');
         });
 
         this.emailInput.addEventListener('blur', () => {
             this.emailInputValid = this.emailInput.value.match(EMAIL_REGEXP);
-            this.showError(this.emailMessage, this.emailInput, !this.emailInputValid);
+            this.showError(this.emailMessage, this.emailInput, !this.emailInputValid, 'Укажите правильную почту', 'Проверьте адрес электронной почты');
         });
 
         this.emailFieldset.append(this.emailLabel, this.emailInput, this.emailMessage);
@@ -163,7 +163,6 @@ export class Recipient {
 
 
         this.phoneMessage = dce('p', 'recipient-message');
-        // this.nameMessage.classList.add('recipient-message_error');
         this.phoneMessage.textContent = 'Укажите правильный телефон';
 
         this.phoneInput.addEventListener('input', () => {
@@ -172,13 +171,13 @@ export class Recipient {
             this.showLabelOnFilledInput(this.phoneLabel, this.phoneInput);
             const isValid = validatePhoneInput(filtered);
             this.phoneInputValid = isValid || this.phoneInputValid;
-            this.showError(this.phoneMessage, this.phoneInput, !this.phoneInputValid);
+            this.showError(this.phoneMessage, this.phoneInput, !this.phoneInputValid, 'Укажите правильный телефон', 'Формат: +9 999 999 99 99');
         });
 
         this.phoneInput.addEventListener('blur', () => {
             const isValid = validatePhoneInput(this.phoneInput.value);
             this.phoneInputValid = isValid;
-            this.showError(this.phoneMessage, this.phoneInput, !this.phoneInputValid);
+            this.showError(this.phoneMessage, this.phoneInput, !this.phoneInputValid, 'Укажите правильный телефон', 'Формат: +9 999 999 99 99');
         });
 
         this.phoneFieldset.append(this.phoneLabel, this.phoneInput, this.phoneMessage);
@@ -199,7 +198,6 @@ export class Recipient {
         this.indexInputValid = true;
 
         this.indexMessage = dce('p', 'recipient__index-message');
-        // this.nameMessage.classList.add('recipient-message_error');
         this.indexMessage.textContent = 'Укажите индекс';
 
         this.indexInput.addEventListener('input', () => {
@@ -208,18 +206,14 @@ export class Recipient {
             const filtered = filterIndexInput(this.indexInput.value)
             const isValid = this.indexInput.value === filtered && filtered !== '';
             this.indexInputValid = isValid || this.indexInputValid;
-            this.indexInput.classList.toggle('recipient-input_error', !this.indexInputValid);
-            this.indexMessage.classList.toggle('recipient__index-message_error', !this.indexInputValid);
-            this.indexMessage.textContent = this.indexInputValid ? 'Укажите индекс' : 'Формат: 1234567';
+            this.showError(this.indexMessage, this.indexInput, !this.indexInputValid, 'Укажите индекс', 'Формат: 1234567');
         });
 
         this.indexInput.addEventListener('blur', () => {
             const filtered = filterIndexInput(this.indexInput.value)
             const isValid = this.indexInput.value === filtered && filtered !== '';
             this.indexInputValid = isValid;
-            this.indexInput.classList.toggle('recipient-input_error', !this.indexInputValid);
-            this.indexMessage.classList.toggle('recipient__index-message_error', !this.indexInputValid);
-            this.indexMessage.textContent = this.indexInputValid ? 'Укажите индекс' : 'Формат: 1234567';
+            this.showError(this.indexMessage, this.indexInput, !this.indexInputValid, 'Укажите индекс', 'Формат: 1234567');
         });
 
         this.indexFieldset.append(this.indexLabel, this.indexInput, this.indexMessage);
@@ -231,28 +225,27 @@ export class Recipient {
 
     validateForm = () => {
         this.nameInputValid = this.nameInput.value !== '';
-        this.showError(this.nameMessage, this.nameInput, !this.nameInputValid);
+        this.showError(this.nameMessage, this.nameInput, !this.nameInputValid, 'Укажите имя');
 
         this.surnameInputValid = this.surnameInput.value !== '';
-        this.showError(this.surnameMessage, this.surnameInput, !this.surnameInputValid);
+        this.showError(this.surnameMessage, this.surnameInput, !this.surnameInputValid, 'Введите фамилию');
 
         this.emailInputValid = this.emailInput.value.match(EMAIL_REGEXP);
-        this.showError(this.emailMessage, this.emailInput, !this.emailInputValid);
+        this.showError(this.emailMessage, this.emailInput, !this.emailInputValid, 'Укажите правильную почту', 'Проверьте адрес электронной почты');
 
         this.phoneInputValid = validatePhoneInput(this.phoneInput.value);
-        this.showError(this.phoneMessage, this.phoneInput, !this.phoneInputValid);
+        this.showError(this.phoneMessage, this.phoneInput, !this.phoneInputValid, 'Укажите правильный телефон', 'Формат: +9 999 999 99 99');
 
         const filtered = filterIndexInput(this.indexInput.value)
         const isValid = this.indexInput.value === filtered && filtered !== '';
         this.indexInputValid = isValid;
-        this.indexInput.classList.toggle('recipient-input_error', !this.indexInputValid);
-        this.indexMessage.classList.toggle('recipient__index-message_error', !this.indexInputValid);
-        this.indexMessage.textContent = this.indexInputValid ? 'Укажите индекс' : 'Формат: 1234567';
+        this.showError(this.indexMessage, this.indexInput, !this.indexInputValid, 'Укажите индекс', 'Формат: 1234567');
 
     }
 
-    showError = (message, input, condition) => {
-        input.classList.toggle('recipient-input_error', condition);
-        message.classList.toggle('recipient-message_error', condition);
+    showError = (message, input, conditionOfError, okMessage, errorMessage = okMessage) => {
+        input.classList.toggle('recipient-input_error', conditionOfError);
+        message.classList.toggle('recipient-message_error', conditionOfError);
+        message.textContent = conditionOfError ? errorMessage : okMessage;
     }
 }

@@ -1,11 +1,13 @@
 .accordeon {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     max-width: 640px;
     display: flex;
     flex-direction: column;
 }
 
-
+.accordeon_bottom {
+    margin-bottom: 20px;
+}
 
 .accordeon_bottom :not(.goods-span, .accordeon-totals) {
     color: var(--text-gray);
@@ -117,6 +119,7 @@
 /* для нажатия на весь бар */
 
 .accordeon-link::after {
+    cursor: pointer;
     content: '';
     position: absolute;
     width: 100%;

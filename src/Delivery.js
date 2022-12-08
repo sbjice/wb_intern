@@ -68,7 +68,7 @@ export class Delivery {
 
         this.deliveryPlaceContentData = dce('div', 'delivery-place__content-data');
 
-        this.deliveryPlaceContentDataRate = dce('span', 'delivery-place__content-data-rate');
+        this.deliveryPlaceContentDataRate = dce('div', 'delivery-place__content-data-rate');
 
         let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('delivery-place__content-data-rate-icon');
@@ -101,7 +101,7 @@ export class Delivery {
         this.deliveryCostTitle.textContent = 'Стоимость доставки';
 
         // адрес пункта заказа
-        this.deliveryCostContent = dce('з', 'delivery-cost__content');
+        this.deliveryCostContent = dce('p', 'delivery-cost__content');
         this.deliveryCostContent.textContent = `Бесплатно`;
 
 
@@ -131,8 +131,9 @@ export class Delivery {
 
             const img = dce('img', 'delivery__list-item-images-image');
             img.src = goodInfo.good.imageSrc;
+            img.alt = goodInfo.good.imageSrc;
             if (goodInfo.deliveryAmount > 1) {
-                const span = dce('span', 'delivery__list-item-images-data');
+                const span = dce('div', 'delivery__list-item-images-data');
 
                 const goodAmountText = dce('p', 'delivery__list-item-images-text');
                 goodAmountText.textContent = goodInfo.deliveryAmount;
@@ -196,6 +197,7 @@ export class Delivery {
 
     updateDeliveryPlaceInfo = (delPlace) => {
         this.selectedDeliveryPlace = delPlace;
+        if (this.callbackForUpdatingDeliveryInfo) this.callbackForUpdatingDeliveryInfo(this.selectedDeliveryPlace);
         console.log(delPlace);
         if (this.selectedDeliveryPlaceType === 'points') {
             this.deliveryPlaceTitle.textContent = 'Пункт выдачи';
@@ -506,5 +508,14 @@ export class Delivery {
 
         console.log('after:', this.deliveryPlaces);
 
+    }
+
+    setCallbackForUpdatingDeliveryInfo = (cb) => {
+        this.callbackForUpdatingDeliveryInfo = cb;
+    }
+
+    openModalForChanging = () => {
+        m.appendChild(this.deliveryChangeContainer);
+        m.openModal();
     }
 }

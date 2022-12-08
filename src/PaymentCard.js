@@ -1,6 +1,4 @@
 import { dce } from "./utils.js";
-import { m } from "./Modal.js";
-
 export class PaymentCard {
     constructor (cardNumber, cardImageSrc, cardImageAlt, cardDate, checkCallback) {
         this.cardNumberValue = cardNumber;
