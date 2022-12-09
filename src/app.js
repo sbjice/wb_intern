@@ -34,6 +34,7 @@ const oi = new OrderInfo(cart0.totals, del.selectedDeliveryPlace, pc.selectedCar
 
 cart0.setCallbackForUpdatingOrderInfo(oi.updateOrderCostInfo);
 cart0.setCallbackForUpdatingDeliveryTexts(oi.updateOrderDeliveryDates);
+cart0.createOuterCartTooltip('header__nav-link-cart');
 pc.setChangeCallback(oi.updateOrderPaymentInfo);
 del.setCallbackForUpdatingDeliveryInfo(oi.updateOrderDeliveryInfo);
 

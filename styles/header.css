@@ -15,7 +15,7 @@
     bottom: -1px;
     right: 0;
     width: 100%;
-    max-width: 1400px;
+    /* max-width: 1400px; */
     margin-right: auto;
     margin-left: auto;
     height: 27px;
@@ -127,6 +127,7 @@
 }
 
 .header__nav-link-icon_cart {
+    position: relative;
     margin-right: 7px;
 }
 

@@ -16,8 +16,6 @@
     top: -1px;
     right: 0;
     width: 100%;
-    max-width: 1400px;
-    /* max-width: 1024px; */
     margin-right: auto;
     margin-left: auto;
     height: 24px;
@@ -39,4 +37,10 @@
     color: var(--white);
     opacity: 0.7;
     letter-spacing: 0.23px;
+}
+
+@media (max-width: 1025px) {
+    .footer::before {
+        max-width: 1024px;
+    }
 }

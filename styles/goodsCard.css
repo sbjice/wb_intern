@@ -360,6 +360,7 @@
 
 .goods-card__actions-minus_disabled,
 .goods-card__actions-plus_disabled {
+    cursor: auto;
     color: var(--light-input-gray);
 }
 

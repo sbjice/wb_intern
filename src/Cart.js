@@ -1,12 +1,6 @@
-// import {
-//     Good
-// } from "./Good.js";
-// import {
-//     Accordeon
-// } from "./Accordeon.js";
-
 import {
     dce,
+    qs,
     countTotal,
     prettifyPrice,
     getWordByAmount
@@ -45,6 +39,11 @@ export class Cart {
         // текст с ценой и количеством товаров для аккордеона
         this.accordeonTotals = dce('p', 'accordeon-totals');
 
+        this.outerCart = null;
+        this.outerCartTooltip = dce('div');
+        this.outerCartTooltipText = dce('p');
+        this.outerCartTooltip.append(this.outerCartTooltipText);
+
 
         this.totals = countTotal(this.goods);
         this.accordeonTotals.textContent = this.setTotalsText();
@@ -64,6 +63,8 @@ export class Cart {
         this.totals = countTotal(this.goods);
         this.accordeonTotals.textContent = this.setTotalsText();
         this.countDeliveryStats();
+        this.outerCartTooltipText.textContent = this.totals.amount;
+        this.outerCartTooltip.classList.toggle('dn', this.totals.amount === 0);
         if (this.callbackForUpdatingOrderInfo) this.callbackForUpdatingOrderInfo(this.totals);
     }
 
@@ -267,4 +268,15 @@ export class Cart {
     setCallbackForUpdatingDeliveryTexts = (cb) => {
         this.callbackForUpdatingDeliveryTexts = cb;
     }
+
+    createOuterCartTooltip = (className) => {
+        this.outerCart = qs(`.${className}`);
+
+        this.outerCartTooltip.classList.add(`${className}-tooltip`);
+        this.outerCartTooltipText.classList.add(`${className}-tooltip-text`);
+
+        this.outerCart.append(this.outerCartTooltip);
+        this.outerCartTooltipText.textContent = this.totals.amount;
+    }
+    
 }

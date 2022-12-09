@@ -39,8 +39,6 @@ export class Good {
         this.checked = checked;
         this.additionalProps = additionalProps;
         this.createVisuals();
-
-        // this.left
     }
 
     leftAmount = () => {
@@ -49,12 +47,10 @@ export class Good {
 
     setCallback = (cb) => {
         this.orderCallback = cb;
-        // console.log(this.orderCallback);
     }
 
     setDeleteCallback = (cb) => {
         this.deleteCallback = cb;
-        // console.log(this.deleteCallback);
         this.actionDelete.addEventListener('click', (e) => {
             e.preventDefault();
             this.deleteCallback(this);
@@ -63,7 +59,6 @@ export class Good {
 
     setOrdered = (val) => {
         this.ordered = val;
-        // console.log(`${this.name} ${this.ordered ? 'is' : 'is not'} ordered`);
         this.orderCallback();
     }
 
@@ -245,36 +240,14 @@ export class Good {
             if (this.leftAmount() >= 1) {
                 this.orderedAmount += 1;
             }
-            this.actionAmount.textContent = this.orderedAmount;
-            const currentCost = Math.round(this.currentPrice * this.orderedAmount);
-            this.pricesCurrent.classList.toggle('goods-card__prices-current_for-small', currentCost< 100000);
-            this.warning.textContent = 'Осталось ' + this.leftAmount() + ' шт.';
-            this.warning.classList.toggle('goods-card__warning_hidden', this.leftAmount() > 5);
-            this.pricesCurrent.textContent = prettifyPrice(currentCost); //* (1 - USER_DISCOUNT)
-            this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
-            this.actionPlus.classList.toggle('goods-card__actions-plus_disabled', this.leftAmount() === 0);
-            this.actionMinus.classList.toggle('goods-card__actions-minus_disabled', this.orderedAmount === 0);
-            this.actionPlus.disabled = this.leftAmount() === 0;
-            this.actionMinus.disabled = this.orderedAmount === 0;
-            if (this.orderCallback) this.orderCallback();
+            this.updateElementsOnAmountChange();
         });
 
         this.actionMinus.addEventListener('click', () => {
-            if ((this.orderedAmount - 1) > -1) {
+            if ((this.orderedAmount - 1) > 0) {
                 this.orderedAmount -= 1;
             }
-            this.actionAmount.textContent = this.orderedAmount;
-            const currentCost = Math.round(this.currentPrice * this.orderedAmount);
-            this.pricesCurrent.classList.toggle('goods-card__prices-current_for-small', currentCost< 100000);
-            this.warning.textContent = 'Осталось ' + this.leftAmount() + ' шт.';
-            this.warning.classList.toggle('goods-card__warning_hidden', this.leftAmount() > 5);
-            this.pricesCurrent.textContent = prettifyPrice(currentCost); //* (1 - USER_DISCOUNT)
-            this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
-            this.actionPlus.classList.toggle('goods-card__actions-plus_disabled', this.leftAmount() === 0);
-            this.actionMinus.classList.toggle('goods-card__actions-minus_disabled', this.orderedAmount === 0);
-            this.actionPlus.disabled = this.leftAmount() === 0;
-            this.actionMinus.disabled = this.orderedAmount === 0;
-            if (this.orderCallback) this.orderCallback();
+            this.updateElementsOnAmountChange();
         });
 
 
@@ -282,7 +255,22 @@ export class Good {
 
         this.card.append(this.prices);
 
+        this.updateElementsOnAmountChange();
+    }
 
+    updateElementsOnAmountChange = () => {
+        this.actionAmount.textContent = this.orderedAmount;
+        const currentCost = Math.round(this.currentPrice * this.orderedAmount);
+        this.pricesCurrent.classList.toggle('goods-card__prices-current_for-small', currentCost< 100000);
+        this.warning.textContent = 'Осталось ' + this.leftAmount() + ' шт.';
+        this.warning.classList.toggle('goods-card__warning_hidden', this.leftAmount() > 5);
+        this.pricesCurrent.textContent = prettifyPrice(currentCost);
+        this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
+        this.actionPlus.classList.toggle('goods-card__actions-plus_disabled', this.leftAmount() === 0);
+        this.actionMinus.classList.toggle('goods-card__actions-minus_disabled', this.orderedAmount === 1);
+        this.actionPlus.disabled = this.leftAmount() === 0;
+        this.actionMinus.disabled = this.orderedAmount === 1;
+        if (this.orderCallback) this.orderCallback();
     }
 
 
