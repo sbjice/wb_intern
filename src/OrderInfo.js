@@ -30,8 +30,16 @@ export class OrderInfo {
         this.orderInfoTotal.classList.add('section-header');
         this.orderInfoTotalText = dce('span', 'order-info__total-text');
         this.orderInfoTotalText.textContent = 'Итого';
-        this.orderInfoTotalPrice = dce('span', 'order-info__total-price');
-        this.orderInfoTotalPrice.textContent = `${prettifyPrice(this.totals.currentPrice)} ${CURRENCY}`;
+        this.orderInfoTotalPrice = dce('div', 'order-info__total-price');
+        
+        this.orderCostTotalPriceNumber = dce('p', 'order-info__cost-total-price-number');
+        this.orderCostTotalPriceNumber.textContent = `${prettifyPrice(this.totals.currentPrice)}`;
+        
+        this.orderCostTotalPriceCurrency = dce('p', 'order-info__cost-total-price-currency');
+        this.orderCostTotalPriceCurrency.textContent = `${CURRENCY}`;
+
+        this.orderInfoTotalPrice.append(this.orderCostTotalPriceNumber, this.orderCostTotalPriceCurrency);
+
         this.orderInfoTotal.append(this.orderInfoTotalText, this.orderInfoTotalPrice);
     }
 
@@ -76,7 +84,7 @@ export class OrderInfo {
     }
 
     fillOrderCostInfo = () => {
-        this.orderInfoTotalPrice.textContent = `${prettifyPrice(this.totals.currentPrice)} ${CURRENCY}`;
+        this.orderCostTotalPriceNumber.textContent = `${prettifyPrice(this.totals.currentPrice)}`;
         this.orderCostTotalAmount.textContent = `${this.totals.amount} ${getWordByAmount(this.totals.amount)}`;
         this.orderCostTotalCost.textContent = `${prettifyPrice(this.totals.currentPrice)} ${CURRENCY}`;
         this.orderCostDiscountAmount.textContent = `-${prettifyPrice(this.totals.basicPrice - this.totals.currentPrice)} ${CURRENCY}`;

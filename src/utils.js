@@ -8,7 +8,6 @@ export const prettifyPrice = (price) => {
         const millions = Math.floor(price / 1000000);
         const thousands = Math.floor((price % 1000000) / 1000).toString().padStart(3, '0');
         const other = Math.floor(price % 1000).toString().padStart(3, '0');
-        console.log(`${millions}, ${thousands}, ${other}`);
         return `${millions} ${thousands} ${other}`;
     };
 }
@@ -26,8 +25,8 @@ export const countTotal = (goods) => {
     goods.forEach(good => {
         if (good.ordered && (good.availableAmount + good.secondAvailableAmount) > 0) {
             amount += good.orderedAmount;
-            basicPrice += good.orderedAmount * good.basicPrice;
-            currentPrice += good.orderedAmount * good.currentPrice;
+            basicPrice += Math.round(good.orderedAmount * good.basicPrice);
+            currentPrice += Math.round(good.orderedAmount * good.currentPrice);
         }
     });
 
@@ -50,51 +49,8 @@ export const qs = (sel) => {
 
 export const joinAdditionalProps = (props) => {
     const arr = Object.keys(props).map(k => `${k}: ${props[k]}`);
-    return arr.join('   ');
+    return arr.join('  ');
 }
-
-
-// export const getDateFromString = (str) => {
-//     const vals = str.split('.')
-//     return {
-//         day: +vals[0],
-//         month: +vals[1] - 1
-//     }
-// };
-
-// const dates = [ {
-//                 start: '5.02',
-//                 end: '6.02'  
-//             }, {
-//                 start: '5.02',
-//                 end: '7.02'  
-//             }, {
-//                 start: '7.02',
-//                 end: '8.02'  
-//             }, {
-//                 start: '1.02',
-//                 end: '2.02'  
-//             }];
-
-// datesObj = {};
-// group dates of deiveries
-// for (date of dates) {
-//     if (datesObj[date.start] === undefined) {
-//         datesObj[date.start] = [];
-//     }
-//     datesObj[date.start].push(date);
-// }
-
-
-// export const mapDatesToDatesObj = (dates) => {
-//     return dates.map(date => {
-//         return {
-//             start: getDateFromString(date.start),
-//             end: getDateFromString(date.end),
-//         }
-//     });
-// };
-
 
 export const filterPhoneInput = (text) => {
     let raw = text
@@ -151,3 +107,48 @@ export const filterIndexInput = (text) => {
 
     return inputVal;
 }
+
+/*
+
+export const getDateFromString = (str) => {
+    const vals = str.split('.')
+    return {
+        day: +vals[0],
+        month: +vals[1] - 1
+    }
+};
+
+const dates = [ {
+                start: '5.02',
+                end: '6.02'  
+            }, {
+                start: '5.02',
+                end: '7.02'  
+            }, {
+                start: '7.02',
+                end: '8.02'  
+            }, {
+                start: '1.02',
+                end: '2.02'  
+            }];
+
+datesObj = {};
+group dates of deiveries
+for (date of dates) {
+    if (datesObj[date.start] === undefined) {
+        datesObj[date.start] = [];
+    }
+    datesObj[date.start].push(date);
+}
+
+
+export const mapDatesToDatesObj = (dates) => {
+    return dates.map(date => {
+        return {
+            start: getDateFromString(date.start),
+            end: getDateFromString(date.end),
+        }
+    });
+};
+
+*/

@@ -16,7 +16,8 @@
     top: -1px;
     right: 0;
     width: 100%;
-    max-width: 1024px;
+    max-width: 1400px;
+    /* max-width: 1024px; */
     margin-right: auto;
     margin-left: auto;
     height: 24px;

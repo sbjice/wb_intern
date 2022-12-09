@@ -43,6 +43,9 @@ oi.setCallbackForChangingPayment(pc.openModalForChanging);
 
 appContainer.append(goodsContainer, del.basicContainer, pc.basicContainer, r.basicContainer);
 cartContainer.append(appContainer, oi.basicContainer);
+acc0.accordeonLink.click();
+acc1.accordeonLink.click();
+
 
 
 /*

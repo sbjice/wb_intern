@@ -68,23 +68,30 @@ export class Good {
     }
 
     createVisuals = () => {
-        this.card = dce('div', 'good-card');
+        this.card = dce('div', 'goods-card');
 
-        this.image = dce('img', 'good-card__image');
+        this.image = dce('img', 'goods-card__image');
         this.image.src = this.imageSrc;
         this.image.alt = this.imageSrc;
         this.card.append(this.image);
 
         this.description = dce('div', 'goods-card__description');
-        this.nameElement = dce('p', 'goods-card__name');
-        this.nameElement.textContent = this.name;
+        this.nameElement = dce('p', 'goods-card__description-name');
+        this.nameElement.innerHTML = this.name;
         this.description.append(this.nameElement);
 
+
+
         if (this.additionalProps) {
-            this.additionalInfoElement = dce('p', 'goods-card__additional-info');
-            this.additionalInfoElement.textContent = joinAdditionalProps(this.additionalProps);
-            this.description.append(this.additionalInfoElement);
+            this.additionalInfo = dce('div', 'goods-card__additional-info');
+            for (let k of Object.keys(this.additionalProps)) {
+                const additionalInfoElement = dce('p', 'goods-card__additional-info-element');
+                additionalInfoElement.textContent = `${k}: ${this.additionalProps[k]}`;
+                this.additionalInfo.append(additionalInfoElement);
+            }
+            this.description.append(this.additionalInfo);
         }
+
         this.stockElement = dce('p', 'goods-card__stock');
         this.stockElement.textContent = this.stock;
         this.descriptionBottom = dce('div', 'goods-card__description-bottom');
@@ -126,17 +133,13 @@ export class Good {
 
         this.actionPlus = dce('a', 'goods-card__actions-plus');
         this.actionPlus.textContent = '+';
-        // this.actionPlus.addEventListener('click',() => console.log('i`m clicked!'));
-        //TODO: добавить вызов пересчета и подсчет количества
-
 
         this.actionAmount = dce('div', 'goods-card__actions-amount');
         this.actionAmount.textContent = this.orderedAmount;
 
         this.actionMinus = dce('a', 'goods-card__actions-minus');
         this.actionMinus.textContent = '-';
-        //TODO: this.actionMinus.addEventListener('click',() => console.log('i`m clicked!'));
-
+        
 
         this.actionsWithAmount.append(this.actionMinus, this.actionAmount, this.actionPlus);
         this.actions.append(this.actionsWithAmount);
@@ -188,12 +191,11 @@ export class Good {
         <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="black"/>
         </g>`;
         this.actionDelete.append(svg);
-        if (this.deleteCallback) {
-            this.actionDelete.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.deleteCallback(this);
-            });
-        }
+
+        this.actionDelete.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (this.deleteCallback) this.deleteCallback(this);
+        });
 
         this.actionsBottom.append(this.actionDelete);
 
@@ -207,6 +209,7 @@ export class Good {
 
         this.pricesCurrent = dce('p', 'goods-card__prices-current');
         this.pricesCurrent.textContent = prettifyPrice(Math.round(this.currentPrice * this.orderedAmount)); //* (1 - USER_DISCOUNT)
+        this.pricesCurrent.classList.toggle('goods-card__prices-current_for-small', Math.round(this.currentPrice * this.orderedAmount) < 100000);
 
         this.pricesCurrency = dce('p', 'goods-card__prices-currency');
         this.pricesCurrency.textContent = CURRENCY;
@@ -243,11 +246,16 @@ export class Good {
                 this.orderedAmount += 1;
             }
             this.actionAmount.textContent = this.orderedAmount;
+            const currentCost = Math.round(this.currentPrice * this.orderedAmount);
+            this.pricesCurrent.classList.toggle('goods-card__prices-current_for-small', currentCost< 100000);
             this.warning.textContent = 'Осталось ' + this.leftAmount() + ' шт.';
             this.warning.classList.toggle('goods-card__warning_hidden', this.leftAmount() > 5);
-            this.pricesCurrent.textContent = prettifyPrice(Math.round(this.currentPrice * this.orderedAmount)); //* (1 - USER_DISCOUNT)
+            this.pricesCurrent.textContent = prettifyPrice(currentCost); //* (1 - USER_DISCOUNT)
             this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
-            
+            this.actionPlus.classList.toggle('goods-card__actions-plus_disabled', this.leftAmount() === 0);
+            this.actionMinus.classList.toggle('goods-card__actions-minus_disabled', this.orderedAmount === 0);
+            this.actionPlus.disabled = this.leftAmount() === 0;
+            this.actionMinus.disabled = this.orderedAmount === 0;
             if (this.orderCallback) this.orderCallback();
         });
 
@@ -256,11 +264,16 @@ export class Good {
                 this.orderedAmount -= 1;
             }
             this.actionAmount.textContent = this.orderedAmount;
+            const currentCost = Math.round(this.currentPrice * this.orderedAmount);
+            this.pricesCurrent.classList.toggle('goods-card__prices-current_for-small', currentCost< 100000);
             this.warning.textContent = 'Осталось ' + this.leftAmount() + ' шт.';
             this.warning.classList.toggle('goods-card__warning_hidden', this.leftAmount() > 5);
-            this.pricesCurrent.textContent = prettifyPrice(Math.round(this.currentPrice * this.orderedAmount)); //* (1 - USER_DISCOUNT)
+            this.pricesCurrent.textContent = prettifyPrice(currentCost); //* (1 - USER_DISCOUNT)
             this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
-    
+            this.actionPlus.classList.toggle('goods-card__actions-plus_disabled', this.leftAmount() === 0);
+            this.actionMinus.classList.toggle('goods-card__actions-minus_disabled', this.orderedAmount === 0);
+            this.actionPlus.disabled = this.leftAmount() === 0;
+            this.actionMinus.disabled = this.orderedAmount === 0;
             if (this.orderCallback) this.orderCallback();
         });
 
