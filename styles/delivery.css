@@ -411,11 +411,6 @@
     color: var(--text-gray);
 }
 
-
-
-
-
-
 .delivery-places__item-delete {
     display: flex;
     align-items: center;
@@ -424,21 +419,19 @@
     height: 20px;
 }
 
-
 .delivery-places__item-delete-icon {
     width: 20px;
     height: 20px;
 }
 
-
 .delivery-places__item-delete:active .delivery-places__item-delete-icon g path {
     fill: var(--red);
 }
 
-
-
-
 .delivery__choose-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     margin-top: auto;
     width: 100%;
@@ -446,9 +439,84 @@
     max-height: 44px;
     padding: 7.5px 48px 12.5px;
     border-radius: 8px;
+    background-color: var(--magenta);
+}
+
+.delivery__choose-button-text {
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
     color: var(--white);
-    background-color: var(--magenta);
+}
+
+
+@media (max-width: 845px) {
+    .delivery {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .delivery-top {
+        margin-bottom: 9px;
+    }
+
+    .delivery-place {
+        margin-bottom: 18px;
+    }
+
+
+    .delivery_secondary {
+        min-height: 100vh;
+        min-width: 320px;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .delivery-place, 
+    .delivery-cost {
+        flex-direction: column;
+    }
+
+    .delivery__list-item {
+        flex-direction: column;
+    }
+
+    .delivery__list-item:not(:last-child) {
+        margin-bottom: 26px;
+    }
+    
+    .delivery__list-item-date {
+        margin-bottom: 12px;
+    }
+
+    .delivery__additional-info {
+        padding: 0 10px;
+    }
+
+    .delivery__additional-info-content,
+    .delivery__additional-info-text,
+    .delivery__additional-info-span {
+        display: inline;
+    }
+
+    .delivery__additional-info-text {
+        margin-right: 0;
+    }
+
+    .delivery__additional-info-span {
+        /* display: inline; */
+        margin-left: 5px;
+    }
+
+    .delivery__additional-info-icon {
+        min-width: 22px;
+        min-height: 22px;
+        max-width: 22px;
+        max-height: 22px;
+      }
+
+    .delivery__choose-button {
+        max-width: none;
+        width: 100%;
+    }
 }

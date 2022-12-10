@@ -44,6 +44,11 @@ export class Cart {
         this.outerCartTooltipText = dce('p');
         this.outerCartTooltip.append(this.outerCartTooltipText);
 
+        this.anotherOuterCart = null;
+        this.anotherOuterCartTooltip = dce('div');
+        this.anotherOuterCartTooltipText = dce('p');
+        this.anotherOuterCartTooltip.append(this.anotherOuterCartTooltipText);
+
 
         this.totals = countTotal(this.goods);
         this.accordeonTotals.textContent = this.setTotalsText();
@@ -65,6 +70,8 @@ export class Cart {
         this.countDeliveryStats();
         this.outerCartTooltipText.textContent = this.totals.amount;
         this.outerCartTooltip.classList.toggle('dn', this.totals.amount === 0);
+        this.anotherOuterCartTooltipText.textContent = this.totals.amount;
+        this.anotherOuterCartTooltip.classList.toggle('dn', this.totals.amount === 0);
         if (this.callbackForUpdatingOrderInfo) this.callbackForUpdatingOrderInfo(this.totals);
     }
 
@@ -277,6 +284,16 @@ export class Cart {
 
         this.outerCart.append(this.outerCartTooltip);
         this.outerCartTooltipText.textContent = this.totals.amount;
+    }
+
+    createAnotherOuterCartTooltip = (className) => {
+        this.anotherOuterCart = qs(`.${className}`);
+
+        this.anotherOuterCartTooltip.classList.add(`${className}-tooltip`);
+        this.anotherOuterCartTooltipText.classList.add(`${className}-tooltip-text`);
+
+        this.anotherOuterCart.append(this.anotherOuterCartTooltip);
+        this.anotherOuterCartTooltipText.textContent = this.totals.amount;
     }
     
 }

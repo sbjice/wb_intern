@@ -20,17 +20,6 @@ export class Recipient {
         this.basicContainer.append(this.basicContainerHeader);
         this.createForm();
         this.basicContainer.append(this.form);
-
-
-        // проверочная кнопка для валидации
-
-        // this.a = dce('a', 'validate');
-        // this.a.textContent = 'validate';
-        // this.a.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        //     this.validateForm();
-        // })
-        // this.basicContainer.append(this.a);
     }
 
     createForm = () => {
@@ -76,7 +65,6 @@ export class Recipient {
 
 
         this.nameInput.addEventListener('blur', () => {
-            this.nameInputValid = this.nameInput.value !== '';
             this.showError(this.nameMessage, this.nameInput, !this.nameInputValid, 'Укажите имя');
         });
 
@@ -107,7 +95,6 @@ export class Recipient {
         });
 
         this.surnameInput.addEventListener('blur', () => {
-            this.surnameInputValid = this.surnameInput.value !== '';
             this.showError(this.surnameMessage, this.surnameInput, !this.surnameInputValid, 'Введите фамилию');
         });
 
@@ -126,7 +113,7 @@ export class Recipient {
         this.emailInput = dce('input', 'recipient-input');
         this.emailInput.classList.add('recipient__email-input');
         this.emailInput.type = 'email';
-        this.emailInput.placeholder = 'Почта';
+        this.emailInput.placeholder = 'Электронная почта';
         this.emailInputValid = true;
 
 
@@ -140,7 +127,6 @@ export class Recipient {
         });
 
         this.emailInput.addEventListener('blur', () => {
-            this.emailInputValid = this.emailInput.value.match(EMAIL_REGEXP);
             this.showError(this.emailMessage, this.emailInput, !this.emailInputValid, 'Укажите правильную почту', 'Проверьте адрес электронной почты');
         });
 
@@ -175,8 +161,6 @@ export class Recipient {
         });
 
         this.phoneInput.addEventListener('blur', () => {
-            const isValid = validatePhoneInput(this.phoneInput.value);
-            this.phoneInputValid = isValid;
             this.showError(this.phoneMessage, this.phoneInput, !this.phoneInputValid, 'Укажите правильный телефон', 'Формат: +9 999 999 99 99');
         });
 
@@ -203,16 +187,13 @@ export class Recipient {
         this.indexInput.addEventListener('input', () => {
             this.showLabelOnFilledInput(this.indexLabel, this.indexInput);
             if (this.indexInput.value.length > 10) this.indexInput.value = this.indexInput.value.substr(0, 10);
-            const filtered = filterIndexInput(this.indexInput.value)
+            const filtered = filterIndexInput(this.indexInput.value);
             const isValid = this.indexInput.value === filtered && filtered !== '';
             this.indexInputValid = isValid || this.indexInputValid;
             this.showError(this.indexMessage, this.indexInput, !this.indexInputValid, 'Укажите индекс', 'Формат: 1234567');
         });
 
         this.indexInput.addEventListener('blur', () => {
-            const filtered = filterIndexInput(this.indexInput.value)
-            const isValid = this.indexInput.value === filtered && filtered !== '';
-            this.indexInputValid = isValid;
             this.showError(this.indexMessage, this.indexInput, !this.indexInputValid, 'Укажите индекс', 'Формат: 1234567');
         });
 

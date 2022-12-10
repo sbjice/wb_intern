@@ -136,6 +136,9 @@
 }
 
 .payment__choose-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     margin-top: auto;
     width: 100%;
@@ -143,11 +146,41 @@
     max-height: 44px;
     padding: 7.5px 48px 12.5px;
     border-radius: 8px;
+    background-color: var(--magenta);
+}
+
+.payment__choose-button-text {
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
     color: var(--white);
-    background-color: var(--magenta);
+
+}
 
 
+
+
+
+
+@media (max-width: 845px) {
+    .payment-choose {
+        padding: 16px 16px 24px;
+    }
+
+    .payment-choose_secondary {
+        padding: 16px;
+        min-height: 100vh;
+        min-width: 320px;
+        margin: 0;
+    }
+
+
+    .payment-top {
+        margin-bottom: 9px;
+    }
+
+    .payment__choose-button {
+        max-width: none;
+        width: 100%;
+    }
 }

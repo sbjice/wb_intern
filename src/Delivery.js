@@ -261,7 +261,10 @@ export class Delivery {
 
 
         this.deliveryChangeContainerChooseButton = dce('a', 'delivery__choose-button');
-        this.deliveryChangeContainerChooseButton.textContent = 'Выбрать';
+        this.deliveryChangeContainerChooseButtonText = dce('p', 'delivery__choose-button-text');
+        this.deliveryChangeContainerChooseButtonText.textContent = 'Выбрать';
+
+        this.deliveryChangeContainerChooseButton.append(this.deliveryChangeContainerChooseButtonText);
 
         this.deliveryChangeContainerChooseButton.addEventListener('click', (e) => {
             e.preventDefault();

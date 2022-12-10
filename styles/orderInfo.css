@@ -219,7 +219,7 @@
     color: var(--black);
 }
 
-.order-info__payment-ckeck-info {
+.order-info__payment-check-info {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -232,14 +232,14 @@
 }
 
 
-.order-info__payment-ckeck-label {
+.order-info__payment-check-label {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
 }
 
-.order-info__payment-ckeck-checkbox {
+.order-info__payment-check-checkbox {
     position: relative;
     margin-right: 8px;
     width: 22px;
@@ -247,7 +247,7 @@
     visibility: hidden;
 }
 
-.order-info__payment-ckeck-checkbox::after {
+.order-info__payment-check-checkbox::after {
     content: '';
     visibility: visible;
     position: absolute;
@@ -263,14 +263,14 @@
                 border-color .3s ease-in-out;
 }
 
-.order-info__payment-ckeck-checkbox:checked::after {
+.order-info__payment-check-checkbox:checked::after {
     border-color: var(--magenta);
     background: var(--magenta) no-repeat center center / 12px 10px;
     background-image: url('../assets/img/checkbox-icon.svg');
 }
 
-.order-info__payment-ckeck-text, 
-.order-info__payment-ckeck-message {
+.order-info__payment-check-text, 
+.order-info__payment-check-message {
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
@@ -355,4 +355,62 @@
         max-width: 220px;
     }
 }
+
+@media (max-width: 845px) {
+    .order-info {
+        max-width: none;
+        width: 100%;
+        padding: 16px;
+        padding-bottom: 0;
+        box-shadow: none;
+        /* background-color: transparent; */
+        background-color: linear-gradient(var(--light-gray), var(--white));
+        border-radius: 0;
+        transform: translateY(0);
+    }
+
+    .order-info__cost {
+        margin-bottom: 18px;
+    }
+
+    .order-info__delivery-top,
+    .order-info__delivery-address,
+    .order-info__delivery-dates {
+        display: none;
+    }
+
+    .order-info__payment {
+        margin-bottom: 0;
+    }
+
+    .order-info__delivery {
+        margin-bottom: 18px;
+    }
+
+    .order-info__delivery-additional-info,
+    .order-info__payment-check-info {
+        background-color: var(--smoky-dark);
+    }
+
+    .order-info__payment-check-info {
+        margin-bottom: 27px;
+    }
+
+    
+
+    .order-info__payment-info-top,
+    .order-info__payment-card {
+        display: none;
+    }
+
+    .order-info__payment-button {
+        max-width: none;
+        width: 100%;
+    }
+
+    /* .order-info__payment-bottom-span {
+        max-width: 220px;
+    } */
+}
+
 

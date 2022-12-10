@@ -152,3 +152,32 @@
     }
 
 }
+
+
+@media (max-width: 845px) {
+    .recipient {
+        padding: 16px;
+    }
+
+    .recipient__header {
+        margin-bottom: 5px;
+    }
+
+    .recipient__form {
+        max-width: none;
+    }
+
+    .recipient-fieldset {
+        min-height: 74px;
+    }
+
+    .recipient__name-fieldset,
+    .recipient__surname-fieldset,
+    .recipient__email-fieldset,
+    .recipient__phone-fieldset,
+    .recipient__index-fieldset {
+        max-width: none;
+        width: 100%;
+    }
+
+}

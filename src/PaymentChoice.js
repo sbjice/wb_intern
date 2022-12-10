@@ -107,7 +107,10 @@ export class PaymentChoice {
         }
 
         this.cardChangeContainerChooseButton = dce('a', 'payment__choose-button');
-        this.cardChangeContainerChooseButton.textContent = 'Выбрать';
+        this.cardChangeContainerChooseButtonText = dce('p', 'payment__choose-button-text');
+        this.cardChangeContainerChooseButtonText.textContent = 'Выбрать';
+
+        this.cardChangeContainerChooseButton.append(this.cardChangeContainerChooseButtonText);
 
         this.cardChangeContainerChooseButton.addEventListener('click', (e) => {
             e.preventDefault();

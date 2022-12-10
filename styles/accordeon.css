@@ -25,8 +25,12 @@
     color: var(--text-gray);
 }
 
-.accordeon_bottom .good-card__image {
+.accordeon_bottom .goods-card__image {
     filter: grayscale(100%);
+}
+
+.accordeon_bottom .goods-card__image-prop-text {
+    color: var(--black);
 }
 
 .accordeon_bottom .goods-checkbox, 
@@ -157,3 +161,37 @@
         max-width: none;
     }
 }
+
+
+@media (max-width: 845px) {
+
+    .accordeon:not(:last-child) {
+        margin-bottom: 43px;
+    }
+
+    .accordeon_bottom {
+        margin-bottom: 6px;
+    }
+
+    .accordeon-bar {
+        padding: 6px 0;
+    }
+
+    .accordeon_bottom .goods-li {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .accordeon_bottom .goods-card {
+        max-width: none;
+        grid-template-rows: repeat(3, auto);
+    }
+
+    .accordeon_bottom .goods-card__description {
+        grid-row: 1;
+    }
+
+    .accordeon_bottom .goods-card__actions{
+        justify-content: end;
+    }
+}
+

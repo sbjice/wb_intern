@@ -42,8 +42,12 @@ export class Accordeon {
 
         if (this.elementForBody) this.accordeonBody.append(elementForBody);
         this.accordeon.append(this.accordeonBar, this.accordeonBody);
+
+        // клик для открытия аккордеона
+        this.accordeonLink.click();
     }
 
+    // TODO: 
     // в идеале в следующих методах стоит затирать предыдыущие значения свойств
     // и удалять заранее размещенные в компоненте элементы
     // но это потом

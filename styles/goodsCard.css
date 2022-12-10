@@ -90,8 +90,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 20px;
+    height: 20px;
     visibility: visible;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -105,8 +105,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 20px;
+    height: 20px;
     visibility: visible;
     border-radius: 5px;
     border: 1px solid var(--magenta);
@@ -133,11 +133,24 @@
     margin-bottom: 20px;
 }
 
+.goods-card__image-box {
+    display: flex;
+    max-height: 96px;
+}
+
 .goods-card__image {
     display: inline-block;
     width: 72px;
     height: 96px;
     margin-right: 16px;
+}
+
+.goods-card__image-prop {
+    display: none;
+}
+
+.goods-card__image-prop_visible {
+    display: none;
 }
 
 .goods-card__description {
@@ -193,7 +206,7 @@
 
 
 
-.goods-card__stock{
+.goods-card__stock {
     width: 100%;
     margin-bottom: 4px;
     font-weight: 400;
@@ -571,5 +584,193 @@
 
     .goods-card__actions {
         margin-right: 5px;
+    }
+}
+
+
+
+
+@media (max-width: 845px) {
+    .goods-container {
+        padding-right: 16px;
+        padding-left: 16px;
+        transform: translateY(-8px);
+    }
+
+    .goods-list {
+        padding-top: 15px;
+    }
+
+    .goods-li {
+        position: relative;
+        padding-top: 10px;
+    }
+
+    .goods-li:not(:first-child) {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .goods-li .goods-checkbox {
+        position: absolute;
+        top: 15px;
+        left: 3px;
+        margin: 0;
+    }
+
+    .goods-li .goods-checkbox::after {
+        background-color: var(--white);
+    }
+
+    .goods-li .goods-checkbox:checked::after {
+        border: 1px solid var(--magenta);
+        background: var(--magenta) no-repeat center center / 12px 10px;
+        background-image: url('../assets/img/checkbox-icon.svg');
+    }
+    
+
+    .goods-card {
+        max-width: none;
+        display: grid;
+        padding: 0;
+        gap: 0 16px;
+        grid-template-columns: 80px auto;
+        grid-template-rows: 24px auto auto;
+    }
+
+    .goods-card__image-box {
+        height: 106px;
+
+        position: relative;
+        grid-row: 1 / span 2;
+        grid-column: 1;
+        margin: 0;
+    }
+
+    .goods-card__image {
+        margin: 0;
+        margin-right: 16px;
+        width: 80px;
+        height: 106px;
+    }
+
+    .goods-card__image-prop_visible {
+        display: inline-flex;
+    }
+
+    .goods-card__image-prop {
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        bottom: 4px;
+        left: 4px;
+        min-width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background-color: var(--white);
+    }
+
+    .goods-card__image-prop-text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .goods-card__description {
+        margin-right: 0;
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .goods-card__description-name {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .goods-card__description-bottom {
+        display: none;
+    }
+
+    .goods-card__additional-info-element:not(:first-child) {
+        display: none;
+    }
+
+    .goods-card__actions {
+        grid-row: 3;
+        grid-column: 1 / span 2;
+        align-self: center;
+        flex-direction: row;
+        align-items: center;
+        /* justify-content: space-between; */
+        margin-right: 0;
+        width: 100%;
+        padding-top: 14px;
+    }
+
+    .goods-card__actions-with-amount {
+        margin-bottom: 0;
+        margin-right: 17px;
+    }
+
+    .goods-card__actions-minus,
+    .goods-card__actions-plus {
+        width: 24px;
+        height: 32px;
+        padding-bottom: 5px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .goods-card__actions-amount {
+        width: 32px;
+        height: 32px;
+        padding-bottom: 3px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .goods-card__warning {
+        margin-bottom: 0;
+        width: 100px;
+    }
+
+    .goods-card__actions-bottom {
+        margin-top: 3px;
+        margin-left: auto;
+    }
+
+    .goods-card__fav-icon {
+        margin-right: 26px;
+    }
+
+    .goods-card__delete-icon {
+        margin-right: 8px;
+    }
+
+    .goods-card__prices {
+        grid-row: 1;
+        grid-column: 2;
+        align-self: flex-start;
+        align-items: center;
+        flex-direction: row;
+        /* justify-content: space-between; */
+        max-width: none;
+        width: 100%;
+    }
+
+    .goods-card__prices-top {
+        width: auto;
+        margin-right: 5px;
+    }
+
+    .goods-card__prices-current {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
     }
 }

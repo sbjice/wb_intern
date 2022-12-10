@@ -245,16 +245,16 @@ export class OrderInfo {
         this.orderPaymentInfo.append(this.orderPaymentInfoTop, this.orderPaymentInfoCard);
 
 
-        this.orderPaymentCheckInfo = dce('div', 'order-info__payment-ckeck-info');
-        this.orderPaymentCheckLabel = dce('label', 'order-info__payment-ckeck-label');
-        this.orderPaymentCheckCheckbox = dce('input', 'order-info__payment-ckeck-checkbox');
+        this.orderPaymentCheckInfo = dce('div', 'order-info__payment-check-info');
+        this.orderPaymentCheckLabel = dce('label', 'order-info__payment-check-label');
+        this.orderPaymentCheckCheckbox = dce('input', 'order-info__payment-check-checkbox');
         this.orderPaymentCheckCheckbox.type = 'checkbox';
         this.orderPaymentCheckCheckbox.id = 'orderCheckbox';
         this.orderPaymentCheckLabel.forHTML = 'orderCheckbox';
-        this.orderPaymentCheckText = dce('span', 'order-info__payment-ckeck-text');
+        this.orderPaymentCheckText = dce('span', 'order-info__payment-check-text');
         this.orderPaymentCheckText.textContent = 'Списать оплату сразу';
 
-        this.orderPaymentCheckMessage = dce('p', 'order-info__payment-ckeck-message');
+        this.orderPaymentCheckMessage = dce('p', 'order-info__payment-check-message');
         this.orderPaymentCheckMessage.textContent = 'Спишем оплату с карты при получении';
 
         this.orderPaymentCheckLabel.append(this.orderPaymentCheckCheckbox, this.orderPaymentCheckText);
@@ -268,12 +268,17 @@ export class OrderInfo {
         this.orderPaymentButtonText.textContent = 'Заказать';
         this.orderPaymentButton.append(this.orderPaymentButtonText);
 
+        this.orderPaymentButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (this.sendOrderCallback) this.sendOrderCallback();
+        })
+
         this.orderPaymentCheckCheckbox.addEventListener('click', () => {
             const checked = this.orderPaymentCheckCheckbox.checked;
             this.orderPaymentButtonText.textContent = checked ? 
                 `Оплатить ${prettifyPrice(this.totals.currentPrice)} ${CURRENCY}` : 
                 'Заказать';
-            this.orderPaymentCheckMessage.classList.toggle('dn', !checked);
+            this.orderPaymentCheckMessage.classList.toggle('dn', checked);
         });
 
 
@@ -323,6 +328,10 @@ export class OrderInfo {
 
     setCallbackForChangingPayment = (cb) => {
         this.callbackForChangingPayment = cb;
+    }
+
+    setSendOrderCallback = (cb) => {
+        this.sendOrderCallback = cb;
     }
 
 }

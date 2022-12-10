@@ -64,11 +64,19 @@ export class Good {
 
     createVisuals = () => {
         this.card = dce('div', 'goods-card');
+        this.imageContainer = dce('div', 'goods-card__image-box')
 
         this.image = dce('img', 'goods-card__image');
         this.image.src = this.imageSrc;
         this.image.alt = this.imageSrc;
-        this.card.append(this.image);
+
+        this.imageAdditionalProp = dce('div', 'goods-card__image-prop');
+        this.imageAdditionalPropText = dce('p', 'goods-card__image-prop-text');
+        this.imageAdditionalProp.append(this.imageAdditionalPropText);
+        // this.image.append(this.imageAdditionalProp);
+        this.imageContainer.append(this.image, this.imageAdditionalProp)
+
+        this.card.append(this.imageContainer);
 
         this.description = dce('div', 'goods-card__description');
         this.nameElement = dce('p', 'goods-card__description-name');
@@ -83,6 +91,10 @@ export class Good {
                 const additionalInfoElement = dce('p', 'goods-card__additional-info-element');
                 additionalInfoElement.textContent = `${k}: ${this.additionalProps[k]}`;
                 this.additionalInfo.append(additionalInfoElement);
+                if (k==='Размер') {
+                    this.imageAdditionalPropText.textContent = `${this.additionalProps[k]}`;
+                    this.imageAdditionalProp.classList.add('goods-card__image-prop_visible');
+                }
             }
             this.description.append(this.additionalInfo);
         }
