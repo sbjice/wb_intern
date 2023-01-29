@@ -22,6 +22,7 @@
 
 .payment-top__change-button {
     cursor: pointer;
+    margin-top: 6px;
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
@@ -37,13 +38,15 @@
 
 
 .payment-data {
-    /* margin: 100px; */
-    /* background: var(--white); */
-    /* outline: 1px solid red; */
     display: flex;
     flex-direction: row;
     align-items: center;
 }
+
+label.payment-data {
+    cursor: pointer;
+}
+
 
 .payment-data:not(:last-child) {
     margin-bottom: 16px;
@@ -70,6 +73,7 @@
 
 
 .payment-data__card-check {
+    cursor: pointer;
     margin: 2px;
     position: relative;
     visibility: hidden;
@@ -80,6 +84,7 @@
 }
 
 .payment-data__card-check::after {
+    cursor: pointer;
     content: '';
     position: absolute;
     visibility: visible;
@@ -95,6 +100,7 @@
 }
 
 .payment-data__card-check:checked::after {
+    cursor: pointer;
     max-width: 6px;
     max-height: 6px;
     border: 5px solid var(--magenta);

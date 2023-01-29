@@ -34,7 +34,7 @@ cart0.setCallbackForUpdatingDeliveryData(del.updateDeliveryList);
 // создание компонентов: выбора способа оплаты; формы получателя; информации о заказах
 const pc = new PaymentChoice(cards);
 const r = new Recipient();
-const oi = new OrderInfo(cart0.totals, del.selectedDeliveryPlace, pc.selectedCard, cart0.dTexts);
+const oi = new OrderInfo(cart0.totals, del.selectedDeliveryPlace, pc.selectedCard, cart0.dInfoTexts);
 
 // настройка обмена данными между компонентами
 cart0.setCallbackForUpdatingOrderInfo(oi.updateOrderCostInfo);

@@ -30,6 +30,7 @@
 
 .delivery-top__change-button {
     cursor: pointer;
+    margin-top: 6px;
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
@@ -43,10 +44,15 @@
 }
 
 .delivery-data {
+    /* cursor: pointer; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+}
+
+label.delivery-data {
+    cursor: pointer;
 }
 
 .delivery_secondary .delivery-data {
@@ -332,6 +338,7 @@
 
 
 .delivery-data__card-check {
+    cursor: pointer;
     margin: 2px;
     position: relative;
     visibility: hidden;
@@ -342,6 +349,7 @@
 }
 
 .delivery-data__card-check::after {
+    cursor: pointer;
     content: '';
     position: absolute;
     visibility: visible;
@@ -412,6 +420,7 @@
 }
 
 .delivery-places__item-delete {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

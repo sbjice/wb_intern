@@ -7,7 +7,7 @@ import {
 } from "./utils.js";
 const CURRENCY = 'сом';
 
-import { months } from "./data.js";
+import { months, monthsShort } from "./data.js";
 
 const DATE_SEPARATOR = '\u{02014}';
 
@@ -62,6 +62,7 @@ export class Cart {
         this.countDeliveryStats();
         // console.log(this.deliveryStats);
         this.generateDeliveryDatesTexts();
+        this.generateDeliveryDatesForDeliveryInfo();
     }
 
     countTotalForCard = () => {
@@ -183,12 +184,6 @@ export class Cart {
         this.getUnavailableItems();
 
         this.setTextForUnavailableItems();
-
-
-
-
-
-
     }
 
     countDeliveryStats = () => {
@@ -221,8 +216,9 @@ export class Cart {
             
         }
         this.generateDeliveryDatesTexts();
+        this.generateDeliveryDatesForDeliveryInfo();
         if (this.callbackForUpdatingDeliveryData) this.callbackForUpdatingDeliveryData(this.dTexts);
-        if (this.callbackForUpdatingDeliveryTexts) this.callbackForUpdatingDeliveryTexts(this.dTexts);
+        if (this.callbackForUpdatingDeliveryTexts) this.callbackForUpdatingDeliveryTexts(this.dInfoTexts);
 
         // if (this.callbackForUpdatingDeliveryData) this.callbackForUpdatingDeliveryData(this.deliveryStats);
     }
@@ -250,19 +246,32 @@ export class Cart {
 
         }
 
-        // сортировка дат по возрастанию / убыванию
-        
-        // console.log(Object.keys(this.deliveryStats).sort((a,b) => {
-        //     if (a < b) { return 1; }
-        //     if (a > b) { return -1; }
-        //     return 0;
-        // } ));
-        // console.log(Object.keys(this.deliveryStats).sort((a,b) => {
-        //     if (a > b) { return -1; }
-        //     if (a < b) { return 1; }
-        //     return 0;
-        // } ));
     }
+
+    generateDeliveryDatesForDeliveryInfo = () => {
+        this.dInfoTexts = {};
+        for (let key of Object.keys(this.deliveryStats)) {
+            // console.log(key);
+            let [firstDate, secondDate] = key.split(DATE_SEPARATOR);
+            // console.log(firstDate, secondDate);
+            let [firstDateDay, firstDateMonth] = firstDate.split('.');
+            let [secondDateDay, secondDateMonth] = secondDate.split('.');
+
+            let firstDateDayNumber = +firstDateDay; 
+            let firstDateMonthNumber = +firstDateMonth - 1; 
+            let secondDateDayNumber = +secondDateDay; 
+            let secondDateMonthNumber = +secondDateMonth - 1; 
+
+
+            const delString = firstDateMonthNumber === secondDateMonthNumber ? 
+                        `${firstDateDayNumber}-${secondDateDayNumber} ${monthsShort[firstDateMonthNumber]}` :
+                        `${firstDateDayNumber} ${monthsShort[firstDateMonthNumber]}-${secondDateDayNumber} ${monthsShort[secondDateMonthNumber]}`;
+
+                        this.dInfoTexts[delString] = this.deliveryStats[key];
+
+        }
+    }
+
 
     setCallbackForUpdatingDeliveryData = (cb) => {
         this.callbackForUpdatingDeliveryData = cb;

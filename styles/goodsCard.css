@@ -12,6 +12,7 @@
 }
 
 .goods-label {
+    cursor: pointer;
     display: none;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -38,6 +39,7 @@
     font-size: 16px;
     line-height: 24px;
     color: var(--black);   
+    margin-top: -5px;
 }
 
 .goods-list {
@@ -67,22 +69,24 @@
 }
 
 .goods-li:not(:last-child) {
-    margin-bottom: 16px;
+    margin-bottom: 15.5px;
 }
 
 
 .goods-checkbox {
+    cursor: pointer;
     -ms-flex-item-align: start;
         align-self: flex-start;
     position: relative;
     margin-top: 49px;
-    margin-right: 12px;
+    margin-right: 13px;
     width: 22px;
     height: 22px;
     visibility: hidden;
 }
 
 .goods-checkbox::after {
+    cursor: pointer;
     position: absolute;
     content: '';
     z-index: 2;
@@ -98,6 +102,7 @@
 }
 
 .goods-checkbox:checked::after {
+    cursor: pointer;
     position: absolute;
     content: '';
     z-index: 2;
@@ -125,7 +130,7 @@
     /* max-width: 765px; */
     width: 100%;
     min-height: 100px;
-    padding-top: 12px;
+    padding-top: 13px;
 }
 
 
@@ -143,6 +148,7 @@
     width: 72px;
     height: 96px;
     margin-right: 16px;
+    margin-top: -0.5px;
 }
 
 .goods-card__image-prop {
@@ -168,17 +174,18 @@
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: start;
-    max-width: 275px;
+    max-width: 270px;
     width: 100%;
 }
 
 .goods-card__description-name {
     cursor: pointer;
     width: 100%;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    letter-spacing: 0.03px;
     line-break: strict;
     color: var(--black);
 }
@@ -201,14 +208,14 @@
 }
 
 .goods-card__additional-info-element:not(:last-child) {
-    margin-right: 16px;
+    margin-right: 17px;
 }
 
 
 
 .goods-card__stock {
     width: 100%;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
@@ -271,7 +278,8 @@
             z-index: 3;
 }
 
-.goods-card__description-span:hover .goods-card__description-container {
+.goods-card__description-span:hover .goods-card__description-container,
+.goods-card__description-container:hover {
     /* visibility: visible;
     opacity: 1; */
     display: inline-block;
@@ -346,6 +354,8 @@
             justify-content: center;
     height: 44px;
     width: 28.5px;
+
+    padding-bottom: 5px;
     background-color: var(--white);
 }
 
@@ -358,10 +368,12 @@
 }
 
 .goods-card__actions-plus {
+    padding-right: 5px;
     border-radius: 0 8px 8px 0;
 }
 
 .goods-card__actions-minus {
+    padding-left: 5px;
     border-radius: 8px 0 0 8px;
 }
 
@@ -376,6 +388,7 @@
 .goods-card__actions-plus_disabled {
     cursor: auto;
     color: var(--light-input-gray);
+    cursor: no-drop;
 }
 
 
@@ -392,6 +405,7 @@
             justify-content: center;
     height: 44px;
     width: 44px;
+    padding-bottom: 4px;
     background-color: var(--white);
 }
 
@@ -488,6 +502,8 @@
 }
 
 .goods-card__prices-current_for-small {
+    margin-top: -4px;
+    margin-right: 6px;
     font-size: 20px;
     line-height: 28px;
 }

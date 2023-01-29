@@ -40,7 +40,7 @@ export const goods0 = [
         '5.02', '6.02',
         0,
         '', '',
-        'third', 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber\u2011Castell', {
+        'third', 'Карандаши цветные Faber\u2011Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber\u2011Castell', {
             name: 'OOO Вайлдберриз',
             ogrn:  '5167746237148',
             address: '129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34',
@@ -165,7 +165,7 @@ export const cardImages = {
 
 export const cardsData = [
     {
-        cardNumber: '1234 56•• •••• 1234',
+        cardNumber: '1234 12•• •••• 1234',
         cardImageSrc: cardImages.mir.src,
         cardImageAlt: cardImages.mir.alt,
         cardDate: '01/30'
@@ -207,6 +207,10 @@ export const months = ['января','февраля','марта',
                         'апреля', 'мая', 'июня',
                         'июля', 'августа', 'сентября', 
                         'октября', 'ноября', 'декабря'];
+export const monthsShort = ['янв','фев','мар',
+                        'апр', 'май', 'июн',
+                        'июл', 'авг', 'сен', 
+                        'окт', 'ноя', 'дек'];
                 
 export const deliveryPoints = [
     new DeliveryPoint('Бишкек',

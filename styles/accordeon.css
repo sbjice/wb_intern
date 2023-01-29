@@ -6,11 +6,11 @@
 }
 
 .accordeon:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .accordeon_bottom {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .accordeon_bottom .goods-card {
@@ -49,8 +49,9 @@
 
 .accordeon-bar {
     position: relative;
+    margin-bottom: -2px;
     width: 100%;
-    padding: 16px 0;
+    padding: 19px 0 14px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -60,10 +61,12 @@
 
 .accordeon:last-of-type .accordeon-bar {
     border-bottom: none;
+    padding: 17px 0 14px;
 }
 
 .accordeon_bottom .accordeon-bar {
     border-bottom: none;
+    margin-bottom: 1px;
 }
 
 .accordeon-bar-label {

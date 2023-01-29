@@ -138,14 +138,14 @@ export class Good {
 
         this.actionsWithAmount = dce('div', 'goods-card__actions-with-amount');
 
-        this.actionPlus = dce('a', 'goods-card__actions-plus');
+        this.actionPlus = dce('button', 'goods-card__actions-plus');
         this.actionPlus.textContent = '+';
 
         this.actionAmount = dce('div', 'goods-card__actions-amount');
         this.actionAmount.textContent = this.orderedAmount;
 
-        this.actionMinus = dce('a', 'goods-card__actions-minus');
-        this.actionMinus.textContent = '-';
+        this.actionMinus = dce('button', 'goods-card__actions-minus');
+        this.actionMinus.textContent = '−';
         
 
         this.actionsWithAmount.append(this.actionMinus, this.actionAmount, this.actionPlus);
@@ -159,7 +159,7 @@ export class Good {
 
         this.actionsBottom = dce('div', 'goods-card__actions-bottom');
 
-        this.actionFav = dce('a', 'goods-card__actions-fav');
+        this.actionFav = dce('button', 'goods-card__actions-fav');
 
         svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('goods-card__fav-icon');
@@ -183,7 +183,7 @@ export class Good {
 
 
 
-        this.actionDelete = dce('a', 'goods-card__actions-delete');
+        this.actionDelete = dce('button', 'goods-card__actions-delete');
 
         svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('goods-card__delete-icon');
@@ -225,7 +225,7 @@ export class Good {
         this.pricesData = dce('div', 'goods-card__prices-data');
 
         this.pricesPrevious = dce('p', 'goods-card__prices-previous');
-        this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
+        this.pricesPrevious.textContent = Math.round(this.basicPrice * this.orderedAmount) + ' ' + CURRENCY;
 
         this.pricesData.append(this.pricesPrevious);
 
@@ -234,14 +234,14 @@ export class Good {
         this.pricesDiscountsBasicDiscountPercent = dce('p', 'goods-card__prices-basic-discount-percent');
         this.pricesDiscountsBasicDiscountPercent.textContent = `Скидка ${Math.round((1 - (this.currentPrice / this.basicPrice)) * 100)}%`;
         this.pricesDiscountsBasicDiscountValue = dce('p', 'goods-card__prices-basic-discount-value');
-        this.pricesDiscountsBasicDiscountValue.textContent = `-${prettifyPrice(this.basicPrice - this.currentPrice)} ${CURRENCY}`;
+        this.pricesDiscountsBasicDiscountValue.textContent = `−${prettifyPrice(this.basicPrice - this.currentPrice)} ${CURRENCY}`;
         this.pricesDiscountsBasicDiscount.append(this.pricesDiscountsBasicDiscountPercent, this.pricesDiscountsBasicDiscountValue);
 
         this.pricesDiscountsUserDiscount = dce('div', 'goods-card__prices-user-discount');
         this.pricesDiscountsUserDiscountPercent = dce('p', 'goods-card__prices-user-discount-percent');
         this.pricesDiscountsUserDiscountPercent.textContent = `Скидка покупателя ${Math.round(100 * USER_DISCOUNT)}%`;
         this.pricesDiscountsUserDiscountValue = dce('p', 'goods-card__prices-user-discount-value');
-        this.pricesDiscountsUserDiscountValue.textContent = `-${Math.round(this.basicPrice * USER_DISCOUNT)} ${CURRENCY}`;
+        this.pricesDiscountsUserDiscountValue.textContent = `−${Math.round(this.basicPrice * USER_DISCOUNT)} ${CURRENCY}`;
         this.pricesDiscountsUserDiscount.append(this.pricesDiscountsUserDiscountPercent, this.pricesDiscountsUserDiscountValue);
         this.pricesDiscounts.append(this.pricesDiscountsBasicDiscount, this.pricesDiscountsUserDiscount);
         this.pricesData.append(this.pricesDiscounts);
@@ -277,7 +277,7 @@ export class Good {
         this.warning.textContent = 'Осталось ' + this.leftAmount() + ' шт.';
         this.warning.classList.toggle('goods-card__warning_hidden', this.leftAmount() > 5);
         this.pricesCurrent.textContent = prettifyPrice(currentCost);
-        this.pricesPrevious.textContent = prettifyPrice(Math.round(this.basicPrice * this.orderedAmount)) + ' ' + CURRENCY;
+        this.pricesPrevious.textContent = Math.round(this.basicPrice * this.orderedAmount) + ' ' + CURRENCY;
         this.actionPlus.classList.toggle('goods-card__actions-plus_disabled', this.leftAmount() === 0);
         this.actionMinus.classList.toggle('goods-card__actions-minus_disabled', this.orderedAmount === 1);
         this.actionPlus.disabled = this.leftAmount() === 0;

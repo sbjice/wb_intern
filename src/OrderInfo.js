@@ -52,7 +52,7 @@ export class OrderInfo {
         // console.log(this.orderCostTotalAmount);
 
         this.orderCostTotalCost = dce('p', 'order-info__cost-total-cost');
-        this.orderCostTotalCost.textContent = `${prettifyPrice(this.totals.currentPrice)} ${CURRENCY}`;
+        this.orderCostTotalCost.textContent = `${prettifyPrice(this.totals.basicPrice)} ${CURRENCY}`;
 
         this.orderCostTotal.append(this.orderCostTotalAmount, this.orderCostTotalCost);
 
@@ -61,7 +61,7 @@ export class OrderInfo {
         this.orderCostDiscountText.textContent = `Скидка`;
 
         this.orderCostDiscountAmount = dce('p', 'order-info__cost-discount-amount');
-        this.orderCostDiscountAmount.textContent = `-${prettifyPrice(this.totals.basicPrice - this.totals.currentPrice)} ${CURRENCY}`;
+        this.orderCostDiscountAmount.textContent = `−${prettifyPrice(this.totals.basicPrice - this.totals.currentPrice)} ${CURRENCY}`;
 
         this.orderCostDiscount.append(this.orderCostDiscountText, this.orderCostDiscountAmount);
 
