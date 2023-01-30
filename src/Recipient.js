@@ -205,6 +205,7 @@ export class Recipient {
     }
 
     validateForm = () => {
+        this.form.scrollIntoView();
         this.nameInputValid = this.nameInput.value !== '';
         this.showError(this.nameMessage, this.nameInput, !this.nameInputValid, 'Укажите имя');
 
@@ -221,6 +222,7 @@ export class Recipient {
         const isValid = this.indexInput.value === filtered && filtered !== '';
         this.indexInputValid = isValid;
         this.showError(this.indexMessage, this.indexInput, !this.indexInputValid, 'Укажите индекс', 'Формат: 1234567');
+        this.form.scrollIntoView({ behavior: 'smooth' });
 
     }
 

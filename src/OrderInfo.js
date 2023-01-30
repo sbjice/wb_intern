@@ -99,7 +99,7 @@ export class OrderInfo {
         this.orderDeliveryInfoTop = dce('div', 'order-info__delivery-top');
         this.orderDeliveryInfoHeader = dce('h3', 'order-info__delivery-header');
         this.orderDeliveryInfoHeader.textContent = 'Доставка в пункт выдачи';
-        this.orderDeliveryInfoButton = dce('a', 'order-info__delivery-button');
+        this.orderDeliveryInfoButton = dce('button', 'order-info__delivery-button');
         let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('order-info__delivery-icon');
         svg.setAttribute('width', '20');
@@ -209,7 +209,7 @@ export class OrderInfo {
         this.orderPaymentInfoTop = dce('div', 'order-info__payment-info-top');
         this.orderPaymentInfoHeader = dce('h3', 'order-info__payment-info-header');
         this.orderPaymentInfoHeader.textContent = 'Оплата картой';
-        this.orderPaymentInfoButton = dce('a', 'order-info__payment-info-button');
+        this.orderPaymentInfoButton = dce('button', 'order-info__payment-info-button');
         let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('order-info__payment-icon');
         svg.setAttribute('width', '20');
