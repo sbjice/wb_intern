@@ -164,13 +164,18 @@ label.payment-data {
 }
 
 
+@media (max-width: 1025px) {
+
+    .payment-top__change-button {
+        margin-right: 2px;
+    }
+}
 
 
 
-
-@media (max-width: 845px) {
+@media (max-width: 860px) {
     .payment-choose {
-        padding: 16px 16px 24px;
+        padding: 11px 16px 24px;
     }
 
     .payment-choose_secondary {
@@ -188,5 +193,10 @@ label.payment-data {
     .payment__choose-button {
         max-width: none;
         width: 100%;
+    }
+
+    .payment-top__change-button {
+        margin-top: 2px;
+        margin-right: 0;
     }
 }

@@ -350,6 +350,20 @@
 @media (max-width: 1025px) {
     .order-info {
         max-width: 303px;
+        padding: 16px 24px 0px;
+    }
+
+
+    .order-info__total {
+        margin-bottom: 7px;
+    }
+
+    .order-info__cost {
+        margin-bottom: 24px;
+    }
+
+    .order-info__delivery-top {
+        margin-bottom: 5px;
     }
 
     .order-info__payment-button {
@@ -357,22 +371,25 @@
     }
 
     .order-info__payment-bottom-span {
-        max-width: 220px;
+        max-width: 215px;
     }
 }
 
-@media (max-width: 845px) {
+@media (max-width: 860px) {
     .order-info {
         max-width: none;
         width: 100%;
-        padding: 16px;
-        padding-bottom: 0;
+        padding: 26px 16px 16px;
         box-shadow: none;
         /* background-color: transparent; */
         background-color: linear-gradient(var(--light-gray), var(--white));
         border-radius: 0;
         transform: translateY(0);
     }
+
+    .order-info__cost-total-price-currency {
+        margin-bottom: 0px;
+      }
 
     .order-info__cost {
         margin-bottom: 18px;
@@ -389,7 +406,7 @@
     }
 
     .order-info__delivery {
-        margin-bottom: 18px;
+        margin-bottom: 16px;
     }
 
     .order-info__delivery-additional-info,
@@ -397,8 +414,12 @@
         background-color: var(--smoky-dark);
     }
 
+    .order-info__delivery-additional-info {
+        padding: 8px 8px 11px;
+      }
+
     .order-info__payment-check-info {
-        margin-bottom: 27px;
+        margin-bottom: 24px;
     }
 
     
@@ -413,9 +434,9 @@
         width: 100%;
     }
 
-    /* .order-info__payment-bottom-span {
-        max-width: 220px;
-    } */
+    .order-info__payment-bottom-span {
+        max-width: none;
+    }
 }
 
 

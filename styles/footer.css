@@ -66,14 +66,24 @@
     letter-spacing: 0.23px;
 }
 
+
 @media (max-width: 1025px) {
     .footer::before {
         max-width: 1024px;
     }
 }
 
-@media (max-width: 845px) {
+@media (max-width: 860px) {
+    .footer::before {
+        max-width: 860px;
+        height: 25px;
+    }
+
     .footer__bottom {
         display: flex;
+    }
+
+    .footer__bottom-nav-link  svg {
+        margin-top: 7px;
     }
 }

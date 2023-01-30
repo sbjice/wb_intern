@@ -44,6 +44,7 @@
 
 .accordeon_bottom .goods-card__description {
     max-width: 309px;
+    margin-right: 17px;
 }
 
 
@@ -170,18 +171,39 @@
 }
 
 
-@media (max-width: 845px) {
+@media (max-width: 860px) {
+
+    .accordeon-link {
+        margin-right: 4px;
+    }
 
     .accordeon:not(:last-child) {
-        margin-bottom: 43px;
+        margin-bottom: 28px;
+    }
+
+    .accordeon:last-of-type .accordeon-bar {
+        border-bottom: none;
+        padding: 17px 0 10px;
+    }
+
+    .accordeon:last-of-type .goods-list {
+        padding-top: 6px;
+    }
+
+    .accordeon:last-of-type .goods-li:not(:last-child) {
+        margin-bottom: 13px;
+    }
+
+    .accordeon:last-of-type .goods-card__actions-bottom {
+        margin: 3px -4px 0 auto;
     }
 
     .accordeon_bottom {
-        margin-bottom: 6px;
+        margin-bottom: 3px;
     }
 
     .accordeon-bar {
-        padding: 6px 0;
+        padding: 6px 0 14px;
     }
 
     .accordeon_bottom .goods-li {

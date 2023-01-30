@@ -86,7 +86,7 @@ export class OrderInfo {
     fillOrderCostInfo = () => {
         this.orderCostTotalPriceNumber.textContent = `${prettifyPrice(this.totals.currentPrice)}`;
         this.orderCostTotalAmount.textContent = `${this.totals.amount} ${getWordByAmount(this.totals.amount)}`;
-        this.orderCostTotalCost.textContent = `${prettifyPrice(this.totals.currentPrice)} ${CURRENCY}`;
+        this.orderCostTotalCost.textContent = `${prettifyPrice(this.totals.basicPrice)} ${CURRENCY}`;
         this.orderCostDiscountAmount.textContent = `-${prettifyPrice(this.totals.basicPrice - this.totals.currentPrice)} ${CURRENCY}`;
         if (this.orderPaymentCheckCheckbox.checked){
             this.orderPaymentButtonText.textContent = `Оплатить ${prettifyPrice(this.totals.currentPrice)} ${CURRENCY}`;

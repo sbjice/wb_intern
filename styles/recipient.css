@@ -154,13 +154,13 @@
 }
 
 
-@media (max-width: 845px) {
+@media (max-width: 860px) {
     .recipient {
-        padding: 16px;
+        padding: 10px 16px;
     }
 
     .recipient__header {
-        margin-bottom: 5px;
+        margin-bottom: 4px;
     }
 
     .recipient__form {
@@ -168,7 +168,7 @@
     }
 
     .recipient-fieldset {
-        min-height: 74px;
+        min-height: 72px;
     }
 
     .recipient__name-fieldset,

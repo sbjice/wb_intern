@@ -42,6 +42,7 @@
 }
 
 .header__nav-burger {
+    cursor: pointer;
     width: 48px;
     height: 48px;
     margin-right: 16px;
@@ -164,20 +165,21 @@
 
 
 
-@media (max-width: 845px) {
+@media (max-width: 860px) {
     .header {
-        min-height: 80px
+        min-height: 79px
     }
 
     .header::after {
-        max-width: 845px;
-        height: 24px;
+        max-width: 860px;
+        height: 23px;
         border-radius: 24px 24px 0px 0px;
     }
 
     .header__nav {
         padding-left: 13px;
         padding-right: 13px;
+        margin: 14px auto;
     }
 
     .header__nav-menu_left {
@@ -201,9 +203,10 @@
 
     .header__nav-main-link {
         max-width: none;
+        margin-top: 1px;
         font-size: 21px;
         line-height: 21px;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.07em;
     }
 
     .header__nav-search-button {
