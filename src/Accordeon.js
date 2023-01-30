@@ -33,7 +33,7 @@ export class Accordeon {
         this.accordeonBody = dce('div', 'accordeon-body');
 
         this.accordeonLink.addEventListener('click', e => {
-            this.accordeonBody.classList.toggle('accordeon-body_open');
+            this.accordeon.classList.toggle('accordeon_open');
             this.accordeonLink.classList.toggle('accordeon-link_open');
             if (this.callback) this.callback();
             // cart.accordeonTotals.classList.toggle('accordeon-totals_hidden');
