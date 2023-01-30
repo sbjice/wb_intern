@@ -36,6 +36,7 @@
 
 .delivery_secondary {
     min-height: 408px;
+    max-height: 80vh;
     min-width: 500px;
     margin: 0;
 }
@@ -664,10 +665,10 @@ label.delivery-data {
 
 
     .delivery_secondary {
-        min-height: 100vh;
+        height: 80vh;
         min-width: 320px;
         margin: 0;
-        border-radius: 0;
+        border-radius: 16px;
     }
 
     .delivery-place, 
