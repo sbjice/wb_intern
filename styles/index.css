@@ -1,3 +1,4 @@
+
 @import url('./fonts.css');
 @import url('./reset.css');
 @import url('./variables.css');
@@ -20,10 +21,19 @@
 @import url('./test.css');
 
 .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     margin-right: auto;
     margin-left: auto;
     max-width: 1400px;
@@ -54,9 +64,16 @@
 }
 
 .cart-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     width: 100%;
     padding: 8px 24px 24px;
 }
@@ -71,8 +88,13 @@
 
 
 .app {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     gap: 16px;
     margin-right: 32px;
     max-width: 891px;
@@ -83,9 +105,15 @@
     position: absolute;
     top: -5px;
     right: 4px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     height: 16px;
     min-width: 16px;
     width: auto;
@@ -110,9 +138,15 @@
     position: absolute;
     top: -11px;
     right: -9px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     height: 16px;
     min-width: 16px;
     width: auto;
@@ -134,8 +168,12 @@
 
 @media (max-width: 1025px) {
     .container {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         margin-right: auto;
         margin-left: auto;
         max-width: 1024px;
@@ -161,8 +199,12 @@
     }
 
     .container {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         margin-right: auto;
         margin-left: auto;
         max-width: 845px;
@@ -171,7 +213,10 @@
     }
 
     .cart-container {
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         padding: 0;
     }
 

@@ -1,8 +1,13 @@
 .accordeon {
     /* margin-left: 20px; */
     /* max-width: 640px; */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .accordeon:not(:last-child) {
@@ -26,7 +31,8 @@
 }
 
 .accordeon_bottom .goods-card__image {
-    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
 }
 
 .accordeon_bottom .goods-card__image-prop-text {
@@ -53,10 +59,19 @@
     margin-bottom: -2px;
     width: 100%;
     padding: 19px 0 14px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -72,10 +87,19 @@
 
 .accordeon-bar-label {
     /* width: 50%; */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     /* для нажатия на весь бар */
     /* z-index: 1; */
 }
@@ -86,6 +110,8 @@
 
 
 .accordeon-totals {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
     font-weight: 600;
     font-size: 16px;
@@ -102,14 +128,23 @@
     height: 100%;
     width: 100%;
     max-height: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
 }
 
 
 /* transforn creates new stacking context, what to do with it? */
 .accordeon-body * {
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
     max-height: 0;
     opacity: 0;
@@ -129,6 +164,8 @@
 
 .accordeon-body_open .good-card,
 .accordeon-body_open .goods-li {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
 }
 
@@ -154,12 +191,18 @@
 
 
 .accordeon-arrow {
-    transform: translateY(5px);
+    -webkit-transform: translateY(5px);
+        -ms-transform: translateY(5px);
+            transform: translateY(5px);
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
 
 .accordeon-link_open .accordeon-arrow {
-    transform: rotate(180deg) translateY(-5px);
+    -webkit-transform: rotate(180deg) translateY(-5px);
+        -ms-transform: rotate(180deg) translateY(-5px);
+            transform: rotate(180deg) translateY(-5px);
 }
 
 
@@ -212,15 +255,19 @@
 
     .accordeon_bottom .goods-card {
         max-width: none;
+        -ms-grid-rows: (auto)[3];
         grid-template-rows: repeat(3, auto);
     }
 
     .accordeon_bottom .goods-card__description {
+        -ms-grid-row: 1;
         grid-row: 1;
     }
 
     .accordeon_bottom .goods-card__actions{
-        justify-content: end;
+        -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                justify-content: end;
     }
 }
 
