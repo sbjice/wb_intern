@@ -13,10 +13,10 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    margin-top: auto;
     min-height: 88px;
     width: 100%;
     background-color: var(--violet);
-
 }
 
 .footer__bottom {
