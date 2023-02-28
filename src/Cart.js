@@ -33,7 +33,7 @@ export class Cart {
             this.goodsVisuals.forEach(goodItem => {
                 goodItem.goodCheckbox.checked = this.goodsCheckbox.checked;
                 goodItem.good.setOrdered(this.goodsCheckbox.checked);
-            })
+            });
         });
 
         // текст с ценой и количеством товаров для аккордеона
@@ -63,6 +63,7 @@ export class Cart {
         // console.log(this.deliveryStats);
         this.generateDeliveryDatesTexts();
         this.generateDeliveryDatesForDeliveryInfo();
+        this.goodsCheckbox.checked = this.availableGoods.every(goodItem => goodItem.ordered);
     }
 
     countTotalForCard = () => {
@@ -91,6 +92,8 @@ export class Cart {
             goodCheckbox.type = 'checkbox';
             goodCheckbox.addEventListener('change', (e) => {
                 good.setOrdered(goodCheckbox.checked);
+
+                this.goodsCheckbox.checked = this.availableGoods.every(goodItem => goodItem.ordered);
             });
 
             goodCheckbox.checked = good.ordered;
